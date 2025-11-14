@@ -1,10 +1,7 @@
-WIP(Unfinished)
-
 Info
 ==============
 Level Editor for Snowy Puzzle Islands
 Place the editor in the same location inside the root folder where PuzzleIslands.exe is located
-Default map is packs\kids\0.ppk
 Please make a backup of the packs folder
 
 Controls
