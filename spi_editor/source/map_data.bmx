@@ -1,0 +1,153 @@
+Function LoadMap()
+   filter$="Snowy Puzzle Island Pack *.ppk:ppk"
+   filename$=RequestFile( "Select pack file to load",filter$,False)
+   Local file:TStream = ReadFile(filename)
+
+   If file Then
+      DebugLog("Map Loaded:"+filename)
+      
+      map_sign = ReadInt(file)
+
+      If map_sign = map_version Then
+        ReadInt(file) 'fixed - 16
+        levelCount = ReadInt(file)
+        
+        For i = 0 To levelCount - 1
+        worldtype[i] = ReadShort(file)
+        map_width[i] = ReadShort(file)
+        map_height[i] = ReadShort(file)
+
+        currWorldType = worldType[currLv]
+
+        'Read Tiles
+        For x=0 To map_height[i]-1
+           For y=0 To map_width[i]-1
+              map[i, y, x] = ReadShort(file)
+           Next
+        Next
+
+       'Read Objects
+        For x=0 To map_height[i]-1
+           For y=0 To map_width[i]-1
+              map2[i, y, x] = ReadShort(file)
+           Next
+        Next
+        flags[0]=ReadShort(file)
+        flags[1]=ReadShort(file)
+        flags[2]=ReadShort(file)
+        flags[3]=ReadShort(file)
+        flags[4]=ReadShort(file)
+        Next
+        CloseFile(file)
+
+        LoadWorldResources()
+      EndIf
+   Else
+      DebugLog("Couldn't Load - "+filename)
+   EndIf
+End Function
+
+Function SaveMap()
+   filter$="Snowy Puzzle Island Pack *.ppk:ppk"
+   filename$=RequestFile( "Select pack file to save",filter$,True)
+   Local file:TStream = WriteFile(filename)
+
+   If file Then
+      DebugLog("Map Saved:"+filename)
+      
+      WriteInt(file, map_version)
+
+      WriteInt(file, 16) 'fixed
+      WriteInt(file, levelCount)
+      
+      For i = 0 To levelCount - 1
+        WriteShort(file, worldType[i])
+        WriteShort(file, map_width[i])
+        WriteShort(file, map_height[i])
+
+        'Write Tiles
+        For x=0 To map_height[i]-1
+           For y=0 To map_width[i]-1
+              WriteShort(file, map[i, y, x])
+           Next
+        Next
+
+       'Write Objects
+        For x=0 To map_height[i]-1
+           For y=0 To map_width[i]-1
+              WriteShort(file, map2[i, y, x])
+           Next
+        Next
+        WriteShort(file, flags[0])
+        WriteShort(file, flags[1])
+        WriteShort(file, flags[2])
+        WriteShort(file, flags[3])
+        WriteShort(file, flags[4])
+     Next
+      CloseFile(file)
+   Else
+      DebugLog("Couldn't Save - "+filename)
+   EndIf
+End Function
+
+Function CreateMapPack()
+   Print "Snowy Puzzle Island Pack Creation"
+   Local pkLvlCount:String=Input("How many Levels?: ")
+   Local pkWorld:String=Input("What World? 0=grass, 1=wood, 2=metal, 3=brick, *=custom: ")
+
+   filter$="Snowy Puzzle Island Pack *.ppk:ppk"
+   filename$=RequestFile( "Select where you would like to save your new pack to",filter$,True)
+   Local file:TStream = WriteFile(filename)
+
+   Local pkMapWidth:Int = 19
+   Local pkMapHeight:Int = 13
+
+   If file Then
+      DebugLog("Map Pack Created:"+filename)
+      
+      WriteInt(file, map_version)
+
+      WriteInt(file, 16) 'fixed
+      WriteInt(file, Int(pkLvlCount))
+
+      currWorldType=Int(pkWorld)
+      levelCount=Int(pkLvlCount)
+
+      For i:Int = 0 To Int(pkLvlCount) - 1
+        map_width[i] = pkMapWidth
+        map_height[i] = pkMapHeight
+        worldType[i] = Int(pkWorld)
+      Next
+
+      For i = 0 To Int(pkLvlCount) - 1
+        WriteShort(file, Int(pkWorld))
+        WriteShort(file, pkMapWidth)
+        WriteShort(file, pkMapHeight)
+
+        'Write Tiles
+        For x=0 To pkMapWidth-1
+           For y=0 To pkMapHeight-1
+              WriteShort(file, map[i, y, x])
+           Next
+        Next
+
+       'Write Objects
+        For x=0 To pkMapWidth-1
+           For y=0 To pkMapHeight-1
+              WriteShort(file, map2[i, y, x])
+           Next
+        Next
+
+        'Conifg Data
+        WriteShort(file, 0)
+        WriteShort(file, 0)
+        WriteShort(file, 0)
+        WriteShort(file, 0)
+        WriteShort(file, 0)
+     Next
+      LoadWorldResources()
+      CloseFile(file)
+   Else
+      DebugLog("Couldn't Create - "+filename)
+   EndIf
+End Function

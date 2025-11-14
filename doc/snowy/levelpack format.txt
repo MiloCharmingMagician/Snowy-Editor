@@ -2,20 +2,16 @@
 default width and height is 20x14
 
 struct_root {
-    u32 sign; // string is "SH"
-	u32 unk; // value is 16 always, next levels header size?
+    u32 magic; // always "SH"
+	u32 fixed; // value is 16 always
 	u32 levelCount;
     
     struct_level {
-	    u16 world;
+	    u16 world; // (1 = world1, 0 = world2, 2 = world3, 3 = world4, 4 = world5-6)
 	    u16 mapWidth;
 		u16 mapHeight;
 		
-		u16 tile[x][y];
-		u16 object[x][y];
-		
-		u16 unk1; ?
-		u32 unk2; offset?
-		u32 unk3; size?
-	}
-}
+		u16 tile[mapWidth][mapHeight];
+		u16 object[mapWidth][mapHeight];
+	};
+};
