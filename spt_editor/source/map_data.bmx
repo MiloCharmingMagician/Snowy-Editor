@@ -34,12 +34,13 @@ Function LoadMap()
               map[i, y, x, 1] = ReadShort(file)
            Next
         Next
-        Next
 
+        'Read Flags
         For j=0 To propCount-1
             flags[i,j] = ReadShort(file)
-            DebugLog("Flag: "+flags[i,j])
+            'DebugLog("Flag: "+flags[i,j])
         Next
+      Next
 
         CloseFile(file)
 
@@ -86,7 +87,7 @@ Function SaveMap()
         For j=0 To propCount-1
             WriteShort(file, flags[i,j])
         Next
-     Next
+      Next
       CloseFile(file)
    Else
       DebugLog("Couldn't Save - "+filename)
