@@ -1,0 +1,48 @@
+struct_root
+{
+    Header m_header;
+    Level m_level;
+};
+
+struct_Header
+{
+    u32 magic;
+    u32 fixed; // must be 16 always
+    u32 levelCount;
+};
+
+struct_Level
+{
+    u16 worldType;
+    u16 mapWidth;
+    u16 mapHeight;
+    u16 tileData[mapHeight][mapWidth];
+    u16 objectData[mapHeight][mapWidth];
+	u16 configData[3959];
+	u8 blobData[]; // bytecode?
+};
+
+// TILES
+01=Ground
+02=Ground2
+03=CornerLeft
+04=Corner2Right
+05=CornerRight
+06=Corner2Left
+07=Jump
+08=Ice
+
+// OBJECTS
+201=MonsterSpawn1
+202=MonsterSpawn2
+203=MonsterSpawn3
+301=Alien1
+302=Alien2
+303=Alien3
+304=Alien4
+305=Alien5
+
+// CONFIG
+1=Robot
+2=Spider
+3=ShooterAlien

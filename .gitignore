@@ -6,7 +6,9 @@
 *.bak
 *.thp
 *.ppk
-bin/*.*
+**/bin/
+**/jtag/
+**/.bmx/
 
 # Linker output
 *.ilk
