@@ -1,7 +1,7 @@
 Info
 ==============
-Level Editor for Snowy Puzzle Islands
-Place the editor in the same location inside the root folder where PuzzleIslands.exe is located
+Level Editor for Snowy Space Trip
+Place the editor in the same location inside the root folder where SpaceTrip.exe is located
 Please make a backup of the packs folder
 
 Controls

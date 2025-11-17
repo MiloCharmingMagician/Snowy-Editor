@@ -20,20 +20,13 @@ Function InitMap()
     databaseItem[0] = 1
     databaseItem[1] = 1
 
-    LoadMap()
+    'LoadMap()
     LoadResources()
     LoadWorldResources()
 
-    'flags[0, 1935] = 3
-
-    'flags[0, 1965] = 18'x-left-length-portal1
-    'flags[0, 1993] = 9'x-right-length-portal1
-    'flags[0, 1967] = 12'y-left-length-portal1
-    'flags[0, 1995] = 12'y-right-length-portal1
-
-    For j=0 To propCount-1
+   ' For j=0 To propCount-1
         'DebugLog("Flag"+Int(j)+": "+flags[0,j])
-    Next
+    'Next
 End Function
 
 Function DrawMap()
@@ -59,7 +52,7 @@ Function DrawMap()
                If img_jumppad Then DrawImage(img_jumppad,cx+x*tsize, y*tsize)
             Case 8
                If img_block Then DrawImage(img_block,cx+x*tsize, y*tsize)
-               If img_ice Then DrawImage(img_ice,cx+x*tsize, y*tsize)
+               If img_ice Then DrawImage(img_ice,cx+x*tsize, y*tsize-10)
             Default
                DrawText("T:"+Int(map(currLv, x, y, 0)),cx+x*tsize-8, y*tsize-21)
                DebugLog("Tile:"+map(currLv, x, y, 0))
@@ -90,9 +83,19 @@ Function DrawMap()
             Case 402
                If img_bullet2 Then DrawImage(img_bullet2,cx+x*tsize, y*tsize-35)
             Case 403
-               If img_gun_ground_l Then DrawImage(img_gun_ground_l,cx+x*tsize-10, y*tsize-35)
+               mpdat:Short = map(currLv, x, y-1, 0)
+               If mpdat = 1 Or mpdat = 2 Or mpdat = 3 Or mpdat = 4 Or mpdat = 5 Or mpdat = 6 Or mpdat = 8 Then
+                   If img_gun_ceil_l Then DrawImage(img_gun_ceil_l,cx+x*tsize-10, y*tsize-10)
+               Else
+                   If img_gun_ground_l Then DrawImage(img_gun_ground_l,cx+x*tsize-10, y*tsize-35)
+               EndIf
             Case 404
-               If img_gun_ground_r Then DrawImage(img_gun_ground_r,cx+x*tsize-10, y*tsize-35)
+               mpdat:Short = map(currLv, x, y-1, 0)
+               If mpdat = 1 Or mpdat = 2 Or mpdat = 3 Or mpdat = 4 Or mpdat = 5 Or mpdat = 6 Or mpdat = 8 Then
+                   If img_gun_ceil_r Then DrawImage(img_gun_ceil_r,cx+x*tsize-10, y*tsize-10)
+               Else
+                   If img_gun_ground_r Then DrawImage(img_gun_ground_r,cx+x*tsize-10, y*tsize-35)
+               EndIf
             Default
                DrawText("O:"+Int(map(currLv, x, y, 1)),cx+x*tsize-8, y*tsize-21)
                DebugLog("Object:"+map(currLv, x, y, 1))
@@ -206,7 +209,7 @@ Function UpdateMap()
 ' Increment
 If KeyHit(KEY_1) Then
     databaseItem[editmode] = databaseItem[editmode] + 1
-    If editmode = 0 And databaseItem[editmode] > 9 Then databaseItem[editmode] = 1
+    If editmode = 0 And databaseItem[editmode] > 8 Then databaseItem[editmode] = 1
     If editmode = 1 And databaseItem[editmode] > 14 Then databaseItem[editmode] = 1
     UpdateDatabase()
 EndIf
@@ -214,7 +217,7 @@ EndIf
 ' Decrement
 If KeyHit(KEY_2) Then
     databaseItem[editmode] = databaseItem[editmode] - 1
-    If editmode = 0 And databaseItem[editmode] < 1 Then databaseItem[editmode] = 9
+    If editmode = 0 And databaseItem[editmode] < 1 Then databaseItem[editmode] = 8
     If editmode = 1 And databaseItem[editmode] < 1 Then databaseItem[editmode] = 13
     UpdateDatabase()
 EndIf
@@ -223,9 +226,9 @@ EndIf
        If currLv=levelCount-1 Then currLv=-1
        currLv=currLv+1
        DebugLog("Level: "+Int(currLv))
-       For j=0 To propCount-1
-            DebugLog("Flag"+Int(j)+": "+flags[currLv,j])
-       Next
+       'For j=0 To propCount-1
+            'DebugLog("Flag"+Int(j)+": "+flags[currLv,j])
+       'Next
    EndIf
 
    If KeyHit(KEY_P) Then
