@@ -1,6 +1,7 @@
 'Maps
 Global rootDir:String = "editor_data\"
 Global packsDir:String = "Packs\"
+Global State:Int = 0
 Global map_width[1000]
 Global map_height[1000]
 Global map[1000,100,100,2]
@@ -16,7 +17,7 @@ Global propCount:Int = 2479
 Global bytecodeSize:Int = 3452
 Global flags[1000,3960]
 Global bytecode[1000,3453]
-Global databaseItem[2]
+Global databaseItem[3]
 Global cx:Int=0
 Global cy:Int=0
 'Objects

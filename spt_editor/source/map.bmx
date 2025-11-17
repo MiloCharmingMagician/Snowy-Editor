@@ -5,6 +5,14 @@ Function InitMap()
         map_width[i] = 32
         map_height[i] = 24
         worldType[i] = 0
+
+        For j=0 To propCount-1
+            flags[i,j] = 0
+        Next
+
+        For j=0 To bytecodeSize-1
+            bytecode[i,j] = 0
+        Next
     Next
 
     currWorldType = worldType[0]
@@ -12,7 +20,20 @@ Function InitMap()
     databaseItem[0] = 1
     databaseItem[1] = 1
 
+    LoadMap()
     LoadResources()
+    LoadWorldResources()
+
+    'flags[0, 1935] = 3
+
+    'flags[0, 1965] = 18'x-left-length-portal1
+    'flags[0, 1993] = 9'x-right-length-portal1
+    'flags[0, 1967] = 12'y-left-length-portal1
+    'flags[0, 1995] = 12'y-right-length-portal1
+
+    For j=0 To propCount-1
+        'DebugLog("Flag"+Int(j)+": "+flags[0,j])
+    Next
 End Function
 
 Function DrawMap()
@@ -70,6 +91,8 @@ Function DrawMap()
                If img_bullet2 Then DrawImage(img_bullet2,cx+x*tsize, y*tsize-35)
             Case 403
                If img_gun_ground_l Then DrawImage(img_gun_ground_l,cx+x*tsize-10, y*tsize-35)
+            Case 404
+               If img_gun_ground_r Then DrawImage(img_gun_ground_r,cx+x*tsize-10, y*tsize-35)
             Default
                DrawText("O:"+Int(map(currLv, x, y, 1)),cx+x*tsize-8, y*tsize-21)
                DebugLog("Object:"+map(currLv, x, y, 1))
@@ -78,8 +101,11 @@ Function DrawMap()
    Next
 
    DrawRect (((MouseX())/tsize)*tsize+10),(((MouseY())/tsize)*tsize+10),tsize+2,tsize+2
-   DrawText "X: "+Int((MouseX())/tsize), 0, 50
-   DrawText "Y: "+Int((MouseY())/tsize), 0, 60
+
+   If editmode=2 Then DrawText "Config ID: "+cfgId, 0, 0
+
+   DrawText "X: "+Int((MouseX())/tsize), 0, 80
+   DrawText "Y: "+Int((MouseY())/tsize), 0, 90
 
    If KeyHit(KEY_W) Then 
       If worldType[currLv] = 4 Then worldType[currLv] = -1
@@ -101,57 +127,61 @@ Function DrawMap()
 
    'If KeyDown(KEY_RIGHT) Then cx=cx-1
 
-   DrawText "Worldtype:"+worldtype[currLv],0,20
+   DrawText "Worldtype:"+worldtype[currLv],0,60
 
    Select editmode
       Case 0'Tilemode
          Select databaseItem[editmode]
             Case 1
-               DrawText "Tiletype: Block", 0, 0
+               DrawText "Tiletype: Block", 0, 40
             Case 2
-               DrawText "Tiletype: Block2", 0, 0
+               DrawText "Tiletype: Block2", 0, 40
             Case 3
-               DrawText "Tiletype: Diag Block Left Down", 0, 0
+               DrawText "Tiletype: Diag Block Left Down", 0, 40
             Case 4
-               DrawText "Tiletype: Diag Block Left Up", 0, 0
+               DrawText "Tiletype: Diag Block Left Up", 0, 40
             Case 5
-               DrawText "Tiletype: Diag Block Right Down", 0, 0
+               DrawText "Tiletype: Diag Block Right Down", 0, 40
             Case 6
-               DrawText "Tiletype: Diag Block Right Up", 0, 0
+               DrawText "Tiletype: Diag Block Right Up", 0, 40
             Case 7
-               DrawText "Tiletype: Jump Pad", 0, 0
+               DrawText "Tiletype: Jump Pad", 0, 40
             Case 8
-               DrawText "Tiletype: Ice", 0, 0
+               DrawText "Tiletype: Ice", 0, 40
             Default
-               DrawText "Tiletype: "+Int(tiletype), 0, 0
+               DrawText "Tiletype: "+Int(tiletype), 0, 40
          End Select
 
       Case 1'Objectmode
          Select databaseItem[editmode]
             Case 1
-               DrawText "ObjectType: Hero", 0, 0
+               DrawText "ObjectType: Hero", 0, 40
             Case 2
-               DrawText "ObjectType: Portal 1", 0, 0
+               DrawText "ObjectType: Portal 1", 0, 40
             Case 3
-               DrawText "ObjectType: Portal 2", 0, 0
+               DrawText "ObjectType: Portal 2", 0, 40
             Case 4
-               DrawText "ObjectType: Portal 3", 0, 0
+               DrawText "ObjectType: Portal 3", 0, 40
             Case 5
-               DrawText "ObjectType: Fellow 1", 0, 0
+               DrawText "ObjectType: Fellow 1", 0, 40
             Case 6
-               DrawText "ObjectType: Fellow 2", 0, 0
+               DrawText "ObjectType: Fellow 2", 0, 40
             Case 7
-               DrawText "ObjectType: Fellow 3", 0, 0
+               DrawText "ObjectType: Fellow 3", 0, 40
             Case 8
-               DrawText "ObjectType: Fellow 4", 0, 0
+               DrawText "ObjectType: Fellow 4", 0, 40
             Case 9
-               DrawText "ObjectType: Fellow 5", 0, 0
+               DrawText "ObjectType: Fellow 5", 0, 40
             Case 10
-               DrawText "ObjectType: Bullet 1", 0, 0
+               DrawText "ObjectType: Bullet1", 0, 40
             Case 11
-               DrawText "ObjectType: Bullet 2", 0, 0
+               DrawText "ObjectType: Bullet2", 0, 40
+            Case 12
+               DrawText "ObjectType: Gun Left", 0, 40
+            Case 13
+               DrawText "ObjectType: Gun Right", 0, 40
             Default
-               DrawText "ObjectType: "+Int(tiletype), 0, 0
+               DrawText "ObjectType: "+Int(tiletype), 0, 40
          End Select
    End Select
 End Function
@@ -167,22 +197,6 @@ Function UpdateMap()
    'control worldtype
    If worldtype[currLv]=-1 Then worldtype[currLv]=0
 
-Select editmode
-    Case 0 ' Tilemode
-        If databaseItem[editmode]=0 Then
-            databaseItem[editmode]=4
-        ElseIf databaseItem[editmode]=5 Then
-            databaseItem[editmode]=1
-        End If
-
-    Case 1 ' Objectmode
-        If databaseItem[editmode]=0 Then
-            databaseItem[editmode]=31
-        ElseIf databaseItem[editmode]=32 Then
-            databaseItem[editmode]=1
-        End If
-End Select
-
    If KeyHit(KEY_0) Then
       databaseItem[editmode]=1
       editmode=editmode+1
@@ -193,26 +207,29 @@ End Select
 If KeyHit(KEY_1) Then
     databaseItem[editmode] = databaseItem[editmode] + 1
     If editmode = 0 And databaseItem[editmode] > 9 Then databaseItem[editmode] = 1
-    If editmode = 1 And databaseItem[editmode] > 12 Then databaseItem[editmode] = 1
+    If editmode = 1 And databaseItem[editmode] > 14 Then databaseItem[editmode] = 1
     UpdateDatabase()
-    DebugLog(databaseItem[editmode])
 EndIf
 
 ' Decrement
 If KeyHit(KEY_2) Then
     databaseItem[editmode] = databaseItem[editmode] - 1
     If editmode = 0 And databaseItem[editmode] < 1 Then databaseItem[editmode] = 9
-    If editmode = 1 And databaseItem[editmode] < 1 Then databaseItem[editmode] = 12
+    If editmode = 1 And databaseItem[editmode] < 1 Then databaseItem[editmode] = 13
     UpdateDatabase()
-    DebugLog(databaseItem[editmode])
 EndIf
 
    If KeyHit(KEY_N) Then
        If currLv=levelCount-1 Then currLv=-1
        currLv=currLv+1
+       DebugLog("Level: "+Int(currLv))
+       For j=0 To propCount-1
+            DebugLog("Flag"+Int(j)+": "+flags[currLv,j])
+       Next
    EndIf
 
    If KeyHit(KEY_P) Then
+       DebugLog("Level: "+Int(currLv))
        If currLv=0 Then currLv=levelCount
        currLv=currLv-1
    EndIf
@@ -226,7 +243,7 @@ EndIf
    If KeyHit(KEY_M) Then CreateMapPack()
 
    'place tile
-   If MouseDown(MOUSE_LEFT) Then
+   If MouseHit(MOUSE_LEFT) Then
       Select editmode
          Case 0'Tilemode
             DebugLog "Placed Tile: "+tiletype
@@ -303,6 +320,10 @@ If editmode=1 Then
        tiletype=401
    Case 11
        tiletype=402
+   Case 12
+       tiletype=403
+   Case 13
+       tiletype=404
    End Select
 EndIf
 End Function

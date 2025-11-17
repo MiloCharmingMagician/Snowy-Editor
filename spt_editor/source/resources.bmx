@@ -24,7 +24,6 @@ img_diagblock_l_up=LoadImage(Rootdir+"worlds\"+worldId+"\diagblock_l_up.png")
 img_diagblock_r_down=LoadImage(Rootdir+"worlds\"+worldId+"\diagblock_r_down.png")
 img_diagblock_r_up=LoadImage(Rootdir+"worlds\"+worldId+"\diagblock_r_up.png")
 img_portal=LoadImage(Rootdir+"worlds\"+worldId+"\portal.png")
-img_exit=LoadImage(Rootdir+"worlds\"+worldId+"\exit.png")
 img_bullet1=LoadImage(Rootdir+"worlds\"+worldId+"\bullet1.png")
 img_bullet2=LoadImage(Rootdir+"worlds\"+worldId+"\bullet2.png")
 End Function
