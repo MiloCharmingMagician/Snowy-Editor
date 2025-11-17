@@ -35,7 +35,7 @@ Function LoadMap()
            Next
         Next
 
-        'Read Flags
+        'Read Config
         For j=0 To propCount-1
             flags[i,j] = ReadShort(file)
             'DebugLog("Flag: "+flags[i,j])

@@ -12,7 +12,7 @@ Global map_version:Int = 19526
 Global levelCount:Int = 0
 Global currLv:Int = 0
 Global currWorldType:Int = 0
-Global propCount:Int = 3959
+Global propCount:Int = 2479
 Global flags[1000,3960]
 Global databaseItem[2]
 Global cx:Int=0

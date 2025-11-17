@@ -1,13 +1,22 @@
 # Prerequisites
 *.d
 *.elf
+*.ogg
+*.bin
+*.xml
+*.ini
 *.exe
+*.dll
 *.so
+*.bk
 *.bak
 *.thp
 *.ppk
+*.tpk
+*.spk
 **/bin/
 **/jtag/
+**/data/
 **/.bmx/
 
 # Linker output
