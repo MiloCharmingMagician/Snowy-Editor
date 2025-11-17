@@ -19,7 +19,7 @@ struct_Level
     u16 tileData[mapHeight][mapWidth];
     u16 objectData[mapHeight][mapWidth];
 	u16 configData[2479];
-	u8 blobData[]; // bytecode?
+	u8 bytecode[3452]; // bytecode or waypoints?
 };
 
 // TILES
