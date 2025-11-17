@@ -1,7 +1,6 @@
 Function LoadMap()
-   'filter$="Snowy Space Trip Pack *.tpk:tpk"
-   'filename$=RequestFile( "Select pack file to load",filter$,False)
-   Local filename:String = packsDir+"Easy\demopack.tpk"
+   filter$="Snowy Space Trip Pack *.tpk:tpk"
+   filename$=RequestFile( "Select pack file to load",filter$,False)
    Local file:TStream = ReadFile(filename)
 
    If file Then
@@ -39,6 +38,12 @@ Function LoadMap()
         For j=0 To propCount-1
             flags[i,j] = ReadShort(file)
             'DebugLog("Flag: "+flags[i,j])
+        Next
+
+        'Read Bytecode
+        For j=0 To bytecodeSize-1
+            bytecode[i,j] = ReadByte(file)
+            'DebugLog("Bytecode: "+bytecode[i,j])
         Next
       Next
 
@@ -86,6 +91,11 @@ Function SaveMap()
         'Write Config
         For j=0 To propCount-1
             WriteShort(file, flags[i,j])
+        Next
+
+        'Write Bytecode
+        For j=0 To bytecodeSize-1
+            WriteByte(file, bytecode[i,j])
         Next
       Next
       CloseFile(file)
@@ -145,6 +155,11 @@ Function CreateMapPack()
         'Write Config
         For j=0 To propCount-1
             WriteInt(file, 0)
+        Next
+
+        'Write Bytecode
+        For j=0 To bytecodeSize-1
+            WriteByte(file, 0)
         Next
      Next
       LoadWorldResources()

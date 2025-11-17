@@ -13,7 +13,9 @@ Global levelCount:Int = 0
 Global currLv:Int = 0
 Global currWorldType:Int = 0
 Global propCount:Int = 2479
+Global bytecodeSize:Int = 3452
 Global flags[1000,3960]
+Global bytecode[1000,3453]
 Global databaseItem[2]
 Global cx:Int=0
 Global cy:Int=0

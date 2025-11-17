@@ -12,9 +12,7 @@ Function InitMap()
     databaseItem[0] = 1
     databaseItem[1] = 1
 
-    LoadMap()
     LoadResources()
-    LoadWorldResources()
 End Function
 
 Function DrawMap()
@@ -70,6 +68,8 @@ Function DrawMap()
                If img_bullet1 Then DrawImage(img_bullet1,cx+x*tsize, y*tsize-35)
             Case 402
                If img_bullet2 Then DrawImage(img_bullet2,cx+x*tsize, y*tsize-35)
+            Case 403
+               If img_gun_ground_l Then DrawImage(img_gun_ground_l,cx+x*tsize-10, y*tsize-35)
             Default
                DrawText("O:"+Int(map(currLv, x, y, 1)),cx+x*tsize-8, y*tsize-21)
                DebugLog("Object:"+map(currLv, x, y, 1))
