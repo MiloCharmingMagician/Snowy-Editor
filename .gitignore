@@ -14,9 +14,15 @@
 *.ppk
 *.tpk
 *.spk
+*.ssv
+*.dds
+*.html
+*.htm
+*.log
 **/bin/
 **/jtag/
 **/data/
+**/wdata/
 **/.bmx/
 
 # Linker output

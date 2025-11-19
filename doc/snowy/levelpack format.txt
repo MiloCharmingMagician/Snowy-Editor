@@ -1,4 +1,4 @@
-.spk - snowy level pack file format
+.spk - snowy level pack file format v1.1
 default width and height is 20x14
 
 struct_root {
@@ -10,8 +10,13 @@ struct_root {
 	    u16 world; // (1 = world1, 0 = world2, 2 = world3, 3 = world4, 4 = world5-6)
 	    u16 mapWidth;
 		u16 mapHeight;
-		
 		u16 tile[mapWidth][mapHeight];
 		u16 object[mapWidth][mapHeight];
+		u16 items[mapWidth][mapHeight]; // stores bonus objects after level enemys are gone
+		u16 flags[0];
+		u16 flags[1];
+		u16 flags[2];
+		u16 flags[3];
+		u16 flags[4];
 	};
 };

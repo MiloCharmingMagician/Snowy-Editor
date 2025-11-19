@@ -5,8 +5,6 @@ Function InitMap()
         worldType[i] = 0
     Next
 
-LevelCount = 1
-
 If gameID = "sth1" Then currMapVersion = mapVersion1
 If gameID = "sth2" Then currMapVersion = mapVersion2
 If gameID = "sth3" Then currMapVersion = mapVersion3
@@ -15,9 +13,9 @@ If gameID = "sth1" Then episode = 0
 If gameID = "sth2" Then episode = 1
 If gameID = "sth3" Then episode = 2
 
-CreateDir("packs")
-CreateDir("packs/kids")
-CreateDir("packs/standard")
+LoadMap()
+
+currWorldType = worldtype[0]
 
 LoadResources()
 LoadWorldResources()
@@ -29,7 +27,7 @@ If img_background Then DrawImage(img_background, 0, 0)
 For x=0 To mapWidth[currlv]-1
 For y=0 To mapHeight[currlv]-1
 Select mapData(currlv, x, y, 1)
-Case 0
+Case 0'None
 Case 373
 If img_gem1 Then DrawImage(img_gem1,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
 Case 374
@@ -88,7 +86,7 @@ If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
 DrawText("13",scroll_x+x*tsize,scroll_y+y*tsize)
 Default'DEFAULT
 DrawText("O"+mapData(currlv, x,y, 1),scroll_x+x*tsize-8,scroll_y+y*tsize-17)
-'DebugLog("Object:"+mapData(currlv, x, y, 1))
+DebugLog("Object:"+mapData(currlv, x, y, 1))
 End Select
 Next
 Next
@@ -259,9 +257,9 @@ Case 587'Cover
 If img_cover Then DrawImage(img_cover,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
 Case 266'Hammer
 If img_hammerX Then DrawImage(img_hammerX,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
-Case 966'Preset1
+Case 978'Preset1
 If img_preset1 Then DrawImage(img_preset1,scroll_x+x*tsize,scroll_y+y*tsize)
-Case 967'Preset2
+Case 966'Preset2
 If img_preset2 Then DrawImage(img_preset2,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 968'Preset3
 If img_preset3 Then DrawImage(img_preset3,scroll_x+x*tsize,scroll_y+y*tsize)
@@ -269,40 +267,23 @@ Case 969'Preset4
 If img_preset4 Then DrawImage(img_preset4,scroll_x+x*tsize,scroll_y+y*tsize)
 Default'DEFAULT
 DrawText("T"+mapData(currlv, x,y, 0),scroll_x+x*tsize-8,scroll_y+y*tsize-17)
-'DebugLog("Tile:"+mapData(currlv, x, y, 0))
+DebugLog("Tile:"+mapData(currlv, x, y, 0))
 End Select
 Next
 Next
-
-If currpacktype = 0 Then packtype = "standard/"
-If currpacktype = 1 Then packtype = "kids/"
-
-If currpacktype = - 1 Then currpacktype = 0
-If currpacktype = 2 Then currpacktype = 1
-
-If packtype = "kids/" Then 
-packtypename = "kids"
-Else
-packtypename = "standard"
-EndIf
-
-'Change Pack Type
-If KeyHit(KEY_K) Then
-    currpacktype = currpacktype + 1
-EndIf
 
 If KeyDown(KEY_RIGHT) Then
     If camera_x = mapWidth[currlv]+1 Then
     Else
 
-    Delay 50
+    Delay 40
     camera_x = camera_x + 1
     scroll_x = scroll_x - tsize
     EndIf
 EndIf
 
 If KeyDown(KEY_LEFT) Then
-    Delay 50
+    Delay 40
     camera_x = camera_x - 1
     scroll_x = scroll_x + tsize
 EndIf
@@ -311,14 +292,14 @@ If KeyDown(KEY_DOWN) Then
     If camera_y = mapHeight[currlv]+1 Then
     Else
 
-    Delay 50
+    Delay 40
     camera_y = camera_y + 1
     scroll_y = scroll_y - tsize
     EndIf
 EndIf
 
 If KeyDown(KEY_UP) Then
-    Delay 50
+    Delay 40
     camera_y = camera_y - 1
     scroll_y = scroll_y + tsize
 EndIf
@@ -327,34 +308,6 @@ DrawRect (((scroll_x-scroll_x+MouseX())/tsize)*tsize)-1,(((scroll_y-scroll_y+Mou
 
 If currlv = -1 Then currlv = levelCount
 If currlv = levelCount+1 Then currlv = 0
-
-If KeyHit(KEY_3) Then 
-currlv = currlv + 1
-LoadWorldResources()
-Cls
-DebugLog("Level:"+currlv)
-EndIf
-
-If KeyHit(KEY_4) Then
-If currlv = -1 Then
-currlv = levelCount
-Else
-If currlv = 0 Then currlv = currlv + 1
-currlv = currlv - 1
-LoadWorldResources()
-Cls
-DebugLog("Level:"+currlv)
-EndIf
-EndIf
-
-If gameID = "sth3" Then
-Else
-If currPack = 0 Then
-mapFlags[currlv] = -1
-Else
-mapFlags[currlv] = 12
-EndIf
-EndIf
 
 If KeyHit(KEY_W) Then
 worldtype[currlv] = worldtype[currlv] + 1 'Forwards worldtype
@@ -375,39 +328,7 @@ EndIf
 DrawText "Worldtype:"+worldtype[currlv],0,20
 
 DrawText "Episode:"+gameID,0,40
-DrawText "Pack:"+currPack,width-80,0
 DrawText "Level:"+currlv,width-80,20
-DrawText "Mode:"+packtypename,0,60
-
-    'BGProps
-    If gameID = "sth3" Then
-    Select currbg
-    Case -1
-    Case 0
-        DrawText "BG9:"+mapPropData[currlv, 0], width-80, 40
-    Case 1
-        DrawText "BG8:"+mapPropData[currlv, 1], width-80, 40
-    Case 2
-        DrawText "BG7:"+mapPropData[currlv, 2], width-80, 40
-    Case 3
-        DrawText "BG6:"+mapPropData[currlv, 3], width-80, 40
-    Case 4
-        DrawText "BG5:"+mapPropData[currlv, 4], width-80, 40
-    Case 5
-        DrawText "BG4:"+mapPropData[currlv, 5], width-80, 40
-    Case 6
-        DrawText "BG3:"+mapPropData[currlv, 6], width-80, 40
-    Case 7
-        DrawText "BG2:"+mapPropData[currlv, 7], width-80, 40
-    Case 8
-        DrawText "BG1:"+mapPropData[currlv, 8], width-80, 40
-    Case 9
-        DrawText "BG0:"+mapPropData[currlv, 9], width-80, 40
-    Case 102
-    Default
-        DrawText "BG"+currbg+":"+mapPropData[currlv, currbg], 0, 0
-    End Select
-    EndIf
 
 Select editmode
 Case 0'Tilemode
@@ -604,7 +525,8 @@ If camera_y = 0 Or camera_y = -1 Then
     camera_y = 0
 EndIf
 
-If currPack = -1 Then currPack = 0
+If currLv=-1 Then currLv = LevelCount
+If currLv=1000 Then currLv = 0
 
 'control editmode
 If editmode=2 Then editmode=0
@@ -621,18 +543,6 @@ If tiletype=0 Or tiletype=-1 Then tiletype=20
 If tiletype=21 Then tiletype=1
 End Select
 
-    If gameID = "sth3" Then
-        If currbg = - 1 Then currbg = 0
-        If currbg = 102 Then currbg = 101
-
-        If currbgIndex = - 1 Then currbgIndex = 0
-        If currbgIndex = 2 Then currbgIndex = 1
-
-        If KeyHit(KEY_5) Then currbg = currbg + 1
-        If KeyHit(KEY_6) Then currbg = currbg - 1
-        If KeyHit(KEY_7) Then changeBGProp(0)
-    EndIf
-
 If KeyHit(KEY_0) Then
 tiletype=1
 editmode=editmode+1
@@ -641,40 +551,39 @@ EndIf
 If KeyHit(KEY_1) Then tiletype=tiletype-1
 If KeyHit(KEY_2) Then tiletype=tiletype+1
 
-'Map Data
-'Saving Map Data
+ If KeyHit(KEY_N) Then
+       If currLv=levelCount-1 Then currLv=-1
+       currLv=currLv+1
+       DebugLog("Level: "+Int(currLv))
+       DebugLog("World: "+Int(worldtype[currLv]))
+       currWorldType = worldtype[currLv]
+       LoadWorldResources()
 
-If KeyHit(KEY_N) Then
-    NewLevel()
-EndIf
+       'For j:Int = 0 To 5300 - 1
+       '    DebugLog("Flag"+Int(j)+": "+Int(flags[currLv, j]))
+       'Next
+   EndIf
 
-If KeyHit(KEY_D) Then
-    DeleteLevel()
-EndIf
+   If KeyHit(KEY_P) Then
+       DebugLog("Level: "+Int(currLv))
+       If currLv=0 Then currLv=levelCount
+       currLv=currLv-1
+       currWorldType = worldtype[currLv]
+       LoadWorldResources()
+   EndIf
 
-If KeyHit(KEY_S) Then
-    setPackExt()
-    SaveMap(packsDir+packtype+currPack+"."+ext)
-EndIf
+   'Map Data
+   'Saving Map Data
+   If KeyHit(KEY_S) Then SaveMap()
+   'Make New Map Pack
+   If KeyHit(KEY_M) Then CreateMapPack()
 
 'Loading Map Data
 If KeyHit(KEY_L) Then
-    setPackExt()
-    LoadMap(packsDir+packtype+currPack+"."+ext)
+    LoadMap()
     currWorldType = worldType[0]
     LoadWorldResources()
     Cls
-EndIf
-
-If currPack = - 1 Then currPack = 0
-
-'Change Pack
-If KeyHit(KEY_8) Then
-    currPack = currPack + 1
-EndIf
-
-If KeyHit(KEY_9) Then
-    currPack = currPack - 1
 EndIf
 
 If episode = 3 Then episode = 0
@@ -1002,47 +911,4 @@ EndIf
 End Function
 
 Function EndMap()
-End Function
-
-Function setPackExt()
-    If gameID = "sth3" Then
-        ext = "th3"
-    Else
-        ext = "thp"
-    EndIf
-End Function
-
-Function changeBGProp(flags=0)
-    If flags = 0 Then
-        currbgIndex = currbgIndex + 1
-    Else
-        currbgIndex = currbgIndex - 1
-    EndIf
-
-    Select currbg
-    Case -1
-    Case 0
-        mapPropData[currlv, 0] = currbgIndex
-    Case 1
-        mapPropData[currlv, 1] = currbgIndex
-    Case 2
-        mapPropData[currlv, 2] = currbgIndex
-    Case 3
-        mapPropData[currlv, 3] = currbgIndex
-    Case 4
-        mapPropData[currlv, 4] = currbgIndex
-    Case 5
-        mapPropData[currlv, 5] = currbgIndex
-    Case 6
-        mapPropData[currlv, 6] = currbgIndex
-    Case 7
-        mapPropData[currlv, 7] = currbgIndex
-    Case 8
-        mapPropData[currlv, 8] = currbgIndex
-    Case 9
-        mapPropData[currlv, 9] = currbgIndex
-    Case 102
-    Default
-        mapPropData[currlv, currbg] = currbgIndex
-    End Select
 End Function

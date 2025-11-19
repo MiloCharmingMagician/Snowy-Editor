@@ -1,4 +1,5 @@
 Function InitEditor()
+    mode = 0
 End Function
 
 Function UpdateEditor()
@@ -12,11 +13,20 @@ Case 0
         Case 1
             UpdateMap()
             DrawMap()
-        Case 2
+    End Select
+Case 1
+    Select state
+        Case 0
+            InitConfig()
+            state = 1
+        Case 1
+            UpdateConfig()
+            DrawConfig()
     End Select
 End Select
 End Function
 
 Function EndEditor()
     EndMap()
+	EndConfig()
 End Function

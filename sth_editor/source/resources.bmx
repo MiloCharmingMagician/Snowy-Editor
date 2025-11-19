@@ -30,11 +30,11 @@ DebugLog("Loading World Resources.")
 'Common
 
 Select currentWorldType
-Case 0
-img_key=LoadImage(rootdir + "items/"+gameID+"/key.png")
 Case 1
-img_key=LoadImage(rootdir + "items/"+gameID+"/key2.png")
+img_key=LoadImage(rootdir + "items/"+gameID+"/key.png")
 Case 2
+img_key=LoadImage(rootdir + "items/"+gameID+"/key2.png")
+Case 3
 img_key=LoadImage(rootdir + "items/"+gameID+"/key3.png")
 End Select
 
@@ -43,7 +43,6 @@ img_background=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/backgr
 
 'Blocks
 
-DebugLog(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/block.png")
 'Block1
 img_block_ground=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/block.png",40,40,0,16)
 
@@ -120,14 +119,15 @@ Else
 EndIf
 
 'MonsterSmart
-Select currWorldType
-Case 0
+
+Select currentWorldTypeX
+Case 1
 img_monster_smart=LoadImage(rootdir+"monsters/"+gameID+"/mummy.png")
 img_monster_smart_spawner=LoadImage(rootdir+"monsters/"+gameID+"/mummy_spawner.png")
-Case 1
+Case 2
 img_monster_smart=LoadImage(rootdir+"monsters/"+gameID+"/cyclop.png")
 img_monster_smart_spawner=LoadImage(rootdir+"monsters/"+gameID+"/cyclop_spawner.png")
-Case 2
+Case 3
 img_monster_smart=LoadImage(rootdir+"monsters/"+gameID+"/troll.png")
 img_monster_smart_spawner=LoadImage(rootdir+"monsters/"+gameID+"/troll_spawner.png")
 End Select

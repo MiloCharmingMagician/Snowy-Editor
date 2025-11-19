@@ -1,18 +1,18 @@
-Include "source\editor\defines.bmx"
-Include "source\editor\resources.bmx"
-Include "source\editor\map.bmx"
-Include "source\editor\mapdata.bmx"
-Include "source\editor\editor.bmx"
+Include "source\defines.bmx"
+Include "source\resources.bmx"
+Include "source\map.bmx"
+Include "source\mapdata.bmx"
+Include "source\config.bmx"
 
 AppTitle = "Snowy Treasure Hunter Editor"
-Graphics width, height
+Graphics 800, 600
 
-InitEditor()
+InitMap()
 
 While Not AppTerminate()
 Cls
-UpdateEditor()
+UpdateMap()
+DrawMap()
 Flip
 Wend
-EndEditor()
 End

@@ -1,17 +1,15 @@
-'Window
-Global width:Int = 800
-Global height:Int = 600
 'Maps
-Global rootdir:String = "data\editor\"
+Global rootdir:String = "editor_data\"
 Global packsdir:String = "packs\"
-Global packtype:String = "standard\"
-Global gameID:String = "sth1"
-Global mapPropMax = 101
-Global mapWidth[1000]
-Global mapHeight[1000]
-Global mapFlags[1000]
-Global mapData[1000, 100, 100, 2]
-Global mapPropData[1000, 101]
+Global gameID:String = "sth3"
+Global fixed:Int = 16
+Global mapPropMax:Int = 100
+Global mapWidth:Short[1000]
+Global mapHeight:Short[1000]
+Global mapConfig:Short[1000,7]
+Global mapData:Short[1000, 100, 100, 2]
+Global mapPropData:Int[1000,102]
+Global flags:Short[1000, 5301]
 Global tsize:Int = 40
 Global tiletype:Int = 1
 Global worldType[1000]
@@ -23,17 +21,9 @@ Global mapVersion3:Int = 13140
 Global currMapVersion:Int = 0
 Global levelCount:Int = 0
 Global currLv:Int = 0
-Global currMapFlag:Int = 0
-Global headerSize:Int = 16
-Global currPack:Int = 0
-Global ext:String = ""
 Global episode:Int = 0
-Global packtypename:String = ""
 Global mode:Int = 0
 Global state:Int = 0
-Global currbg:Int = 1
-Global currbgIndex:Int = 0
-Global currpacktype:Int = 0
 'Background
 Global img_background:TImage
 'Blocks
