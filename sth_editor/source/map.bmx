@@ -1,5 +1,7 @@
 Function InitMap()
     ui_editor_panel_flag = 1
+    ui_editor_panel_active = 0
+    ui_editor_grid_active = 1
 
     For i:Int = 0 To 1000 - 1
         mapWidth[i] = 40
@@ -294,7 +296,7 @@ Next
 
     If ui_editor_panel_active = 0 Then DrawRect (((scroll_x-scroll_x+MouseX())/tsize)*tsize)-1,(((scroll_y-scroll_y+MouseY())/tsize)*tsize)-1,tsize+2,tsize+2
 
-    DrawGrid()
+    If ui_editor_grid_active = 1 Then DrawGrid()
 
 If KeyDown(KEY_RIGHT) Then
     If camera_x = mapWidth[currlv]+1 Then
@@ -532,8 +534,6 @@ DrawMapUI()
 End Function
 
 Function UpdateMap()
-UpdateMapUI()
-
 'Standard Animations
 If AnimFrame[0] = 30 Then AnimFrame[0] = 0
 AnimFrame[0] = AnimFrame[0] + 1
@@ -550,13 +550,16 @@ EndIf
 
 Local mx:Int = (scroll_x-scroll_x-scroll_x+MouseX())/tsize
 Local my:Int = (scroll_y-scroll_y-scroll_y+MouseY())/tsize
+Local px:Int = MouseY()
 Local py:Int = MouseY()
 
-If py >= 472 And py < 600 Then
-    ui_editor_panel_active = 1
+If ui_editor_panel_flag = 1 Then
+    If py >= 476 And py < 600 Then ui_editor_panel_active = 1
 Else
-    ui_editor_panel_active = 0
+    If py >= 0 And py < 600 Then ui_editor_panel_active = 1
 EndIf
+
+UpdateMapUI()
 
 If gameID = "sth1" Then currMapVersion = mapVersion1
 If gameID = "sth2" Then currMapVersion = mapVersion2
@@ -963,9 +966,9 @@ Function EndMap()
 End Function
 
 Function UpdateMapUI()
-End Function
+    Local px:Int = MouseX()
+    Local py:Int = MouseY()
 
-Function DrawMapUI()
     If ui_editor_panel_flag = 0 Then
         ui_editor_panel_x = 0
         ui_editor_panel_y = 0
@@ -974,6 +977,22 @@ Function DrawMapUI()
         ui_editor_panel_y = 472
     EndIf
 
+    If MouseHit(MOUSE_LEFT) Then
+    If py >= ui_editor_panel_y And py < ui_editor_panel_y+32 Then
+        
+        ' toggle 0 <-> 1
+        If ui_editor_panel_flag = 0 Then
+            ui_editor_panel_flag = 1
+        Else
+            ui_editor_panel_flag = 0
+        EndIf
+        
+        DebugLog "FLAG = " + ui_editor_panel_flag
+    EndIf
+EndIf
+End Function
+
+Function DrawMapUI()
     If img_editor_panel Then DrawImage(img_editor_panel, ui_editor_panel_x, ui_editor_panel_y)
 
     If ui_editor_panel_flag = 0 Then

@@ -88,12 +88,13 @@ Global AnimFrame:Int[10]
 Global AnimMode:Int[10]
 
 'Editor UI Globals
+Global ui_editor_grid_active:Byte = 0
 Global ui_editor_panel_active:Byte = 0
 Global ui_editor_panel_flag:Byte=0
 Global ui_editor_panel_x:Int=0
 Global ui_editor_panel_y:Int=0
-Global BtnOffUICount:Int=11
-Global BtnOnUICount:Int=11
+Global BtnOffUICount:Int=12
+Global BtnOnUICount:Int=12
 Global BtnNameTable:String[32, 2]
 
 'Editor UI Resources
