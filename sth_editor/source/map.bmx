@@ -3,11 +3,34 @@ Function InitMap()
     ui_editor_panel_active = 0
     ui_editor_grid_active = 0
 
-    For i:Int = 0 To 1000 - 1
+   For i:Int = 0 To 1000 - 1
         mapWidth[i] = 40
         mapHeight[i] = 30
         worldType[i] = 0
-    Next
+        mapConfig[i,0] = 0
+        mapConfig[i,1] = 0
+		mapConfig[i,2] = 0
+		mapConfig[i,3] = 0
+		mapConfig[i,4] = 0
+		mapConfig[i,5] = 0
+		mapConfig[i,6] = 0
+
+        For j = 0 To mapPropMax - 1
+		    mapPropData[i, j] = 0
+		Next
+		
+        For x=0 To mapHeight[i]-1
+            For y=0 To mapWidth[i]-1
+                mapData[i, y, x, 0] = 0
+            Next
+        Next
+            
+        For x=0 To mapHeight[i]-1
+            For y=0 To mapWidth[i]-1
+                mapData[i, y, x, 1] = 0
+           Next
+       Next
+   Next
 
 If gameID = "sth1" Then currMapVersion = mapVersion1
 If gameID = "sth2" Then currMapVersion = mapVersion2
@@ -333,20 +356,24 @@ EndIf
 If currlv = -1 Then currlv = levelCount
 If currlv = levelCount+1 Then currlv = 0
 
+' Increase worldtype
 If KeyHit(KEY_W) Then
-worldtype[currlv] = worldtype[currlv] + 1 'Forwards worldtype
-currWorldType = worldtype[currlv]
-LoadWorldResources()
-Cls
-DebugLog("Worldtype: "+worldtype[currlv])
+    worldtype[currlv] = worldtype[currlv] + 1
+    If worldtype[currlv] > 2 Then worldtype[currlv] = 0 ' Wrap around
+    currWorldType = worldtype[currlv]
+    LoadWorldResources()
+    Cls
+    DebugLog("Worldtype: " + worldtype[currlv])
 EndIf
 
-If KeyHit(KEY_O) Then 
-worldtype[currlv] = worldtype[currlv] - 1 'Backwards worldtypes
-currWorldType = worldtype[currlv]
-LoadWorldResources()
-Cls
-DebugLog("Worldtype: "+worldtype[currlv])
+' Decrease worldtype
+If KeyHit(KEY_D) Then
+    worldtype[currlv] = worldtype[currlv] - 1
+    If worldtype[currlv] < 0 Then worldtype[currlv] = 2 ' Wrap around
+    currWorldType = worldtype[currlv]
+    LoadWorldResources()
+    Cls
+    DebugLog("Worldtype: " + worldtype[currlv])
 EndIf
 
 DrawText "Worldtype:"+worldtype[currlv],0,20

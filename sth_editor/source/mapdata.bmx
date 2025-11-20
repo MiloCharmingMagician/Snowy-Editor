@@ -1,4 +1,36 @@
 Function LoadMap()
+   For i:Int = 0 To 1000 - 1
+        mapWidth[i] = 40
+        mapHeight[i] = 30
+        worldType[i] = 0
+        mapConfig[i,0] = 0
+        mapConfig[i,1] = 0
+		mapConfig[i,2] = 0
+		mapConfig[i,3] = 0
+		mapConfig[i,4] = 0
+		mapConfig[i,5] = 0
+		mapConfig[i,6] = 0
+
+        For j = 0 To mapPropMax - 1
+		    mapPropData[i, j] = 0
+		Next
+		
+        For x=0 To mapHeight[i]-1
+            For y=0 To mapWidth[i]-1
+                mapData[i, y, x, 0] = 0
+            Next
+        Next
+            
+        For x=0 To mapHeight[i]-1
+            For y=0 To mapWidth[i]-1
+                mapData[i, y, x, 1] = 0
+           Next
+       Next
+   Next
+
+   levelCount = 0
+   currlv = 0
+
    If gameID="sth3" Then
        filter$="Snowy Teasure Hunter 3 Pack *.th3:th3"
    Else
@@ -142,22 +174,24 @@ End Function
 Function CreateMapPack()
    Print "Snowy Treasure Hunter Pack Creation"
    Local filter:String
-   Local pkEpisode:String=Input("What Episode? sth1, sth2, sth3: ")
    Local pkLvlCount:String
    Local pkWorld:String
 
-   pkLvlCount=Input("How many Levels?: ")
+    pkLvlCount=Input("How many Levels?: ")
 
-   Select pkEpisode
+   Select gameID
    Case "sth1"
-       pkWorld=Input("What World? 0=desert, 1=beach, 2=snow")
+       pkWorld=Input("What World? 0=egypt, 1=greek, 2=norse: ")
        filter$="Snowy Treasure Hunter Pack *.thp:thp"
+       currMapVersion=mapVersion1
    Case "sth2"
-       pkWorld=Input("What World? 0=jungle, 1=temple, 2=china")
+       pkWorld=Input("What World? 0=jungle, 1=mayan, 2=china: ")
        filter$="Snowy Treasure Hunter Pack *.thp:thp"
+       currMapVersion=mapVersion2
    Case "sth3"
-       pkWorld=Input("What World? 0=castle-out, 1=castle-inside, 2=basement")
-       filter$="Snowy Treasure Hunter Pack *.thp:thp"
+       pkWorld=Input("What World? 0=castle-int, 1=castle-out, 2=basement: ")
+       filter$="Snowy Treasure Hunter 3 Pack *.th3:th3"
+       currMapVersion=mapVersion3
    End Select
 
    filename$=RequestFile( "Select where you would like to save your new pack to",filter$,True)
@@ -169,7 +203,7 @@ Function CreateMapPack()
    If file Then
       DebugLog("Map Pack Created:"+filename)
       
-      WriteInt(file, map_version)
+      WriteInt(file, currMapVersion)
 
       WriteInt(file, fixed)
       WriteInt(file, Int(pkLvlCount))
