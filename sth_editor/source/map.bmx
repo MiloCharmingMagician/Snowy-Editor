@@ -1,4 +1,6 @@
 Function InitMap()
+    ui_editor_panel_flag = 1
+
     For i:Int = 0 To 1000 - 1
         mapWidth[i] = 40
         mapHeight[i] = 30
@@ -29,61 +31,77 @@ For y=0 To mapHeight[currlv]-1
 Select mapData(currlv, x, y, 1)
 Case 0'None
 Case 373
-If img_gem1 Then DrawImage(img_gem1,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_gem1 Then DrawImage(img_gem1,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 Case 374
-If img_gem2 Then DrawImage(img_gem2,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_gem2 Then DrawImage(img_gem2,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 Case 375
-If img_gem3 Then DrawImage(img_gem3,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_gem3 Then DrawImage(img_gem3,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 Case 376
-If img_gem4 Then DrawImage(img_gem4,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_gem4 Then DrawImage(img_gem4,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 Case 377
-If img_gem5 Then DrawImage(img_gem5,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_gem5 Then DrawImage(img_gem5,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 Case 378
-If img_gem6 Then DrawImage(img_gem6,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_gem6 Then DrawImage(img_gem6,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 Case 0835
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("0",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0836
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("1",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0837
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("2",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0838
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("3",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0839
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("4",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0840
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("5",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0841
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("6",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0842
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("7",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0843
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("8",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0844
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("9",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0845
-If img_arrow2 Then DrawImage(img_arrow2,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_arrow2 Then DrawImage(img_arrow2,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 Case 0846
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("10",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0847
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("11",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0848
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("12",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0849
-If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10)
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
 DrawText("13",scroll_x+x*tsize,scroll_y+y*tsize)
+Case 0850
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
+DrawText("14",scroll_x+x*tsize,scroll_y+y*tsize)
+Case 0851
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
+DrawText("15",scroll_x+x*tsize,scroll_y+y*tsize)
+Case 0852
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
+DrawText("16",scroll_x+x*tsize,scroll_y+y*tsize)
+Case 0853
+If img_hint Then DrawImage(img_hint,scroll_x+x*tsize-12,scroll_y+y*tsize-10, AnimFrame[0])
+DrawText("17",scroll_x+x*tsize,scroll_y+y*tsize)
+Case 0861
+If img_arrow1 Then DrawImage(img_arrow1,scroll_x+x*tsize-12,scroll_y+y*tsize-60, AnimFrame[0])
+DrawText("0",scroll_x+x*tsize,scroll_y+y*tsize)
+
 Default'DEFAULT
 DrawText("O"+mapData(currlv, x,y, 1),scroll_x+x*tsize-8,scroll_y+y*tsize-17)
 DebugLog("Object:"+mapData(currlv, x, y, 1))
@@ -103,10 +121,10 @@ Case 3
 If img_block_rock Then DrawImage(img_block_rock,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 4
 If img_block_ground Then DrawImage(img_block_ground,scroll_x+x*tsize,scroll_y+y*tsize)
-If img_ice1 Then DrawImage(img_ice1,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_ice1 Then DrawImage(img_ice1,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 5
 If img_block2_ground Then DrawImage(img_block_ground,scroll_x+x*tsize,scroll_y+y*tsize)
-If img_ice2 Then DrawImage(img_ice2,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_ice2 Then DrawImage(img_ice2,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 6
 If img_ladder Then DrawImage(img_ladder,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 7
@@ -114,11 +132,11 @@ If img_hidden_ladder Then DrawImage(img_hidden_ladder,scroll_x+x*tsize,scroll_y+
 Case 8
 If img_hbar Then DrawImage(img_hbar,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 9
-If img_exit Then DrawImage(img_exit,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_exit Then DrawImage(img_exit,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 10
-If img_exit_closed Then DrawImage(img_exit_closed,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_exit_closed Then DrawImage(img_exit_closed,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 11
-If img_hero Then DrawImage(img_hero,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_hero Then DrawImage(img_hero,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 12'Tel-In1
 If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
 DrawText("1",scroll_x+x*tsize,scroll_y+y*tsize)
@@ -210,57 +228,59 @@ Case 41'Tel-Out15
 If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
 DrawText("15",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 142'MonsterGuard-Right
-If img_monster_guard Then DrawImage(img_monster_guard,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_guard Then DrawImageFlipped(img_monster_guard, scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0], 31, 0, 0)
 Case 143'MonsterGuard-Left
-If img_monster_guard_left Then DrawImage(img_monster_guard_left,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_guard Then DrawImageFlipped(img_monster_guard, scroll_x+x*tsize-8+img_monster_guard.width,scroll_y+y*tsize-17, AnimFrame[0], 31, 1, 0)
 Case 144'MonsterGuard-Smart-Right
-If img_monster_guard_smart_right Then DrawImage(img_monster_guard_smart_right,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_guard_smart Then DrawImageFlipped(img_monster_guard_smart, scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0], 31, 0, 0)
 Case 145'MonsterGuard-Smart
-If img_monster_guard_smart Then DrawImage(img_monster_guard_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_guard_smart Then DrawImageFlipped(img_monster_guard_smart, scroll_x+x*tsize-8+img_monster_guard_smart.width,scroll_y+y*tsize-17, AnimFrame[0], 31, 1, 0)
 Case 483'Score
-If img_score Then DrawImage(img_score,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_score Then DrawImage(img_score,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 484'Life
-If img_live Then DrawImage(img_live,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_live Then DrawImage(img_live,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 146'SmartMonster1
-If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("1",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 147'SmartMonster2
-If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("2",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 148'SmartMonster3
-If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("3",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 149'SmartMonster4
-If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart Then DrawImage(img_monster_smart,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("4",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 156'SmartMonster-Spawner
-If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("1",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 157'SmartMonster2-Spawner
-If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("2",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 158'SmartMonster3-Spawner
-If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("3",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 159'SmartMonster4-Spawner
-If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_monster_smart_spawner Then DrawImage(img_monster_smart_spawner,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 DrawText("4",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 268
-If img_key Then DrawImage(img_key,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_key Then DrawImage(img_key,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 269'Item-Trap
-If img_trap Then DrawImage(img_trap,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_trap Then DrawImage(img_trap,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 271'Item-Bomb
-If img_bomb Then DrawImage(img_bomb,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_bomb Then DrawImage(img_bomb,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 272'Item-Fakehero
-If img_fakehero Then DrawImage(img_fakehero,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_fakehero Then DrawImage(img_fakehero,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 587'Cover
 If img_cover Then DrawImage(img_cover,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
 Case 266'Hammer
-If img_hammerX Then DrawImage(img_hammerX,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_hammerX Then DrawImage(img_hammerX,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 978'Preset1
 If img_preset1 Then DrawImage(img_preset1,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 966'Preset2
 If img_preset2 Then DrawImage(img_preset2,scroll_x+x*tsize,scroll_y+y*tsize)
+Case 967'Preset3
+If img_preset3 Then DrawImage(img_preset3,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 968'Preset3
 If img_preset3 Then DrawImage(img_preset3,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 969'Preset4
@@ -271,6 +291,10 @@ DebugLog("Tile:"+mapData(currlv, x, y, 0))
 End Select
 Next
 Next
+
+    If ui_editor_panel_active = 0 Then DrawRect (((scroll_x-scroll_x+MouseX())/tsize)*tsize)-1,(((scroll_y-scroll_y+MouseY())/tsize)*tsize)-1,tsize+2,tsize+2
+
+    DrawGrid()
 
 If KeyDown(KEY_RIGHT) Then
     If camera_x = mapWidth[currlv]+1 Then
@@ -303,8 +327,6 @@ If KeyDown(KEY_UP) Then
     camera_y = camera_y - 1
     scroll_y = scroll_y + tsize
 EndIf
-
-DrawRect (((scroll_x-scroll_x+MouseX())/tsize)*tsize)-1,(((scroll_y-scroll_y+MouseY())/tsize)*tsize)-1,tsize+2,tsize+2
 
 If currlv = -1 Then currlv = levelCount
 If currlv = levelCount+1 Then currlv = 0
@@ -505,11 +527,36 @@ Case 20
 DrawText "Tiletype:Hint13",0,0
 End Select
 End Select
+
+DrawMapUI()
 End Function
 
 Function UpdateMap()
+UpdateMapUI()
+
+'Standard Animations
+If AnimFrame[0] = 30 Then AnimFrame[0] = 0
+AnimFrame[0] = AnimFrame[0] + 1
+
+'Standard Ping-Pong Animations
+If AnimFrame[1] = 30 Then AnimMode[1] = 1
+If AnimFrame[1] = -1 Then AnimMode[1] = 29
+
+If AnimMode[1] = 0 Then
+    AnimFrame[1] = AnimFrame[1] + 1
+Else
+    AnimFrame[1] = AnimFrame[1] - 1
+EndIf
+
 Local mx:Int = (scroll_x-scroll_x-scroll_x+MouseX())/tsize
 Local my:Int = (scroll_y-scroll_y-scroll_y+MouseY())/tsize
+Local py:Int = MouseY()
+
+If py >= 472 And py < 600 Then
+    ui_editor_panel_active = 1
+Else
+    ui_editor_panel_active = 0
+EndIf
 
 If gameID = "sth1" Then currMapVersion = mapVersion1
 If gameID = "sth2" Then currMapVersion = mapVersion2
@@ -626,6 +673,7 @@ If KeyHit(KEY_E) Then
      DebugLog(episode)
 EndIf
 
+If ui_editor_panel_active = 0
 'place tile
 If MouseDown(MOUSE_LEFT) Then
 Select editmode
@@ -908,7 +956,87 @@ mapData(currlv, mx,my, 1) = 0
 EndIf
 End Select
 EndIf
+EndIf
 End Function
 
 Function EndMap()
+End Function
+
+Function UpdateMapUI()
+End Function
+
+Function DrawMapUI()
+    If ui_editor_panel_flag = 0 Then
+        ui_editor_panel_x = 0
+        ui_editor_panel_y = 0
+    Else
+        ui_editor_panel_x = 0
+        ui_editor_panel_y = 472
+    EndIf
+
+    If img_editor_panel Then DrawImage(img_editor_panel, ui_editor_panel_x, ui_editor_panel_y)
+
+    If ui_editor_panel_flag = 0 Then
+        If img_ui_down Then DrawImage(img_ui_down, ui_editor_panel_x, ui_editor_panel_y)        
+    Else
+        If img_ui_up Then DrawImage(img_ui_up, ui_editor_panel_x, ui_editor_panel_y)
+    EndIf
+
+    Select currWorldType
+    Case 0
+        If img_ui_btn_world[0] Then DrawImage(img_ui_btn_world[0], ui_editor_panel_x+33, ui_editor_panel_y)
+    Case 1
+        If img_ui_btn_world[1] Then DrawImage(img_ui_btn_world[1], ui_editor_panel_x+33, ui_editor_panel_y)
+    Case 2
+        If img_ui_btn_world[2] Then DrawImage(img_ui_btn_world[2], ui_editor_panel_x+33, ui_editor_panel_y)
+    End Select
+
+    For i = 0 To BtnOffUICount - 1
+        If img_ui_btn[i, 0] Then DrawImage(img_ui_btn[i, 0], ui_editor_panel_x+66+i*33, ui_editor_panel_y)
+    Next
+End Function
+
+Function DrawImageFlipped(img:TImage, x:Int, y:Int, frame:Int = 0, frames:Int = 1, flipX:Int = False, flipY:Int = False)
+    Local sx:Float = 1
+    Local sy:Float = 1
+    If flipX Then sx = -1
+    If flipY Then sy = -1
+
+    ' compute frame size (assume frames arranged horizontally in one row)
+    Local fw:Int = img.width / Max(1, frames)
+    Local fh:Int = img.height
+
+    ' set scale (flip)
+    SetScale sx, sy
+
+    ' compute draw pos corrected for flipping
+    Local drawX:Int = x
+    Local drawY:Int = y
+    If flipX Then drawX :+ fw        ' shift by frame width when flipped horizontally
+    If flipY Then drawY :+ fh        ' shift by frame height when flipped vertically
+
+    ' draw (you can add scroll offsets outside or inside)
+    DrawImage img, drawX, drawY, frame
+
+    ' restore scale
+    SetScale 1, 1
+End Function
+
+Function DrawGrid()
+    SetColor 255,255,255  ' grid lines color (white)
+    
+    Local map_w:Int = 40
+    Local map_h:Int = 30
+    
+    ' Vertical lines
+    For Local x:Int = 0 To 40-1
+        Local px:Int = x * tsize
+        DrawLine px, 0, px, map_h * tsize
+    Next
+    
+    ' Horizontal lines
+    For Local y:Int = 0 To 30-1
+        Local py:Int = y * tsize
+        DrawLine 0, py, map_w * tsize, py
+    Next
 End Function

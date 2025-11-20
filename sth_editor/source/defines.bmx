@@ -82,3 +82,23 @@ Global scroll_y:Int = 0
 'Hint
 Global img_hint:TImage
 Global img_arrow2:TImage
+Global img_arrow1:TImage
+'Animations
+Global AnimFrame:Int[10]
+Global AnimMode:Int[10]
+
+'Editor UI Globals
+Global ui_editor_panel_active:Byte = 0
+Global ui_editor_panel_flag:Byte=0
+Global ui_editor_panel_x:Int=0
+Global ui_editor_panel_y:Int=0
+Global BtnOffUICount:Int=11
+Global BtnOnUICount:Int=11
+Global BtnNameTable:String[32, 2]
+
+'Editor UI Resources
+Global img_editor_panel:TImage
+Global img_ui_up:TImage
+Global img_ui_down:TImage
+Global img_ui_btn_world:TImage[3]
+Global img_ui_btn:TImage[32, 2]

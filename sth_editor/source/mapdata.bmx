@@ -59,7 +59,7 @@ Function LoadMap()
             Next
             
             For j = 0 To 5300 - 1
-		        ReadShort(file)
+		        ReadShort(file)'unknown data
 		    Next
 		Next
 		EndIf

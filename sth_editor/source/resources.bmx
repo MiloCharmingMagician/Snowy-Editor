@@ -2,25 +2,54 @@ Function LoadResources()
 DebugLog("Loading Default Resources.")
 'Common
 
-img_hero=LoadImage(rootdir + "common/hero.png")
-img_ice1=LoadImage(rootdir + "worlds/common/ice1.png")
-img_ice2=LoadImage(rootdir + "worlds/common/ice2.png")
-img_score=LoadImage(rootdir + "bonuses/score.png")
-img_life=LoadImage(rootdir + "bonuses/life.png")
-img_fakehero=LoadImage(rootdir + "items/common/fakehero.png")
-img_hammerX=LoadImage(rootdir + "items/common/hammer.png")
+img_hero=LoadAnimImage(rootdir + "common/hero.png", 64, 64, 0, 31)
+img_ice1=LoadAnimImage(rootdir + "worlds/common/ice1.png", 64, 64, 0, 31)
+img_ice2=LoadAnimImage(rootdir + "worlds/common/ice2.png", 64, 64, 0, 31)
+img_score=LoadAnimImage(rootdir + "bonuses/score.png", 64, 64, 0, 31)
+img_life=LoadAnimImage(rootdir + "bonuses/life.png", 64, 64, 0, 31)
+img_fakehero=LoadAnimImage(rootdir + "items/common/fakehero.png", 64, 64, 0, 31)
+img_hammerX=LoadAnimImage(rootdir + "items/common/hammer.png", 64, 64, 0, 31)
 
 If gameID = "sth3"
-img_trap=LoadImage(rootdir + "items/common/trap2.png")
+img_trap=LoadAnimImage(rootdir + "items/common/trap2.png", 64, 64, 0, 31)
 Else
-img_trap=LoadImage(rootdir + "items/common/trap.png")
+img_trap=LoadAnimImage(rootdir + "items/common/trap.png", 64, 64, 0, 31)
 EndIf
 
 If gameID = "sth3"
-img_bomb=LoadImage(rootdir + "items/common/bomb2.png")
+img_bomb=LoadAnimImage(rootdir + "items/common/bomb2.png", 64, 64, 0, 31)
 Else
-img_bomb=LoadImage(rootdir + "items/common/bomb.png")
+img_bomb=LoadAnimImage(rootdir + "items/common/bomb.png", 64, 64, 0, 31)
 EndIf
+
+LoadUIResources()
+End Function
+
+Function LoadUIResources()
+    img_editor_panel=LoadImage(rootdir + "editor/editor_panel.png", 0)
+    img_ui_up=LoadImage(rootdir + "editor/up.png", 0)
+    img_ui_down=LoadImage(rootdir + "editor/down.png", 0)
+    img_ui_btn_world[0]=LoadImage(rootdir + "editor/world1.png", 0)
+    img_ui_btn_world[1]=LoadImage(rootdir + "editor/world2.png", 0)
+    img_ui_btn_world[2]=LoadImage(rootdir + "editor/world3.png", 0)
+
+    'Buttons Off
+    BtnNameTable[0,0]="worker_off"
+    BtnNameTable[1,0]="bomb_off"
+    BtnNameTable[2,0]="bonusitem_off"
+    BtnNameTable[3,0]="hammer_off"
+    BtnNameTable[4,0]="gold1_off"
+    BtnNameTable[5,0]="gold2_off"
+    BtnNameTable[6,0]="gold3_off"
+    BtnNameTable[7,0]="gold4_off"
+    BtnNameTable[8,0]="gold5_off"
+    BtnNameTable[9,0]="gold6_off"
+    BtnNameTable[10,0]="grid_off"   
+
+    For i = 0 To BtnOffUICount - 1
+        img_ui_btn[i,0]=LoadImage(rootdir+"editor\"+BtnNameTable[i,0]+".png", 0)
+        DebugLog(rootdir + "editor\"+BtnNameTable[i,0]+".png")
+    Next
 End Function
 
 Function LoadWorldResources()
@@ -31,11 +60,11 @@ DebugLog("Loading World Resources.")
 
 Select currentWorldType
 Case 1
-img_key=LoadImage(rootdir + "items/"+gameID+"/key.png")
+img_key=LoadAnimImage(rootdir + "items/"+gameID+"/key.png", 64, 64, 0, 31)
 Case 2
-img_key=LoadImage(rootdir + "items/"+gameID+"/key2.png")
+img_key=LoadAnimImage(rootdir + "items/"+gameID+"/key2.png", 64, 64, 0, 31)
 Case 3
-img_key=LoadImage(rootdir + "items/"+gameID+"/key3.png")
+img_key=LoadAnimImage(rootdir + "items/"+gameID+"/key3.png", 64, 64, 0, 31)
 End Select
 
 'Background
@@ -62,10 +91,10 @@ img_block2_ground=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"
 img_block_rock=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/concrete.png",40,40,0,16)
 
 'Exit
-img_exit=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/exit.png")
+img_exit=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/exit.png", 64, 64, 0, 31)
 
 'Closed-Exit
-img_exit_closed=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/exit_closed.png")
+img_exit_closed=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/exit_closed.png", 64, 64, 0, 31)
 
 'Ladder
 img_ladder=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/ladder.png")
@@ -85,70 +114,63 @@ img_teleport_in=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/objec
 img_teleport_out=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/objects/teleport_out.png")
 
 'Hammmer
-img_hammer=LoadImage(rootdir+"items/hammer.png")
+img_hammer=LoadAnimImage(rootdir+"items/hammer.png", 64, 64, 0, 31)
 
 'Hints
-img_hint=LoadImage(rootdir+"common/hint_point.png")
-img_arrow2=LoadImage(rootdir+"common/arrow2.png")
+img_hint=LoadAnimImage(rootdir+"common/hint_point.png", 64, 64, 0, 31)
+img_arrow2=LoadAnimImage(rootdir+"common/arrow2.png", 64, 64, 0, 31)
+img_arrow1=LoadAnimImage(rootdir+"common/arrow1.png", 64, 64, 0, 31)
 
 'Monsters
 'MonsterGuard
 If gameID = "sth1" Or gameID = "sth2" Then
 Select currentWorldTypeX
 Case 1
-   img_monster_guard=LoadImage(rootdir+"monsters/"+gameID+"/stoneman.png")
-   img_monster_guard_smart=LoadImage(rootdir+"monsters/"+gameID+"/stoneman_smart.png")
-   img_monster_guard_right=LoadImage(rootdir+"monsters/"+gameID+"/stoneman_left.png")
-   img_monster_guard_smart_left=LoadImage(rootdir+"monsters/"+gameID+"/stoneman_smart_right.png")
+   img_monster_guard=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman.png", 64, 64, 0, 31)
+   img_monster_guard_smart=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman_smart.png", 64, 64, 0, 31)
 Case 2
-   img_monster_guard=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2.png")
-   img_monster_guard_smart=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2_smart.png")
-   img_monster_guard_right=LoadImage(rootdir+"monsters/"+gameID+"/stoneman_left.png")
-   img_monster_guard_smart_left=LoadImage(rootdir+"monsters/"+gameID+"/stoneman_smart_right.png")
+   img_monster_guard=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman2.png", 64, 64, 0, 31)
+   img_monster_guard_smart=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman2_smart.png", 64, 64, 0, 31)
 Case 3
-   img_monster_guard=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2.png")
-   img_monster_guard_smart=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2_smart.png")
-   img_monster_guard_left=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2_left.png")
-   img_monster_guard_smart_right=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2_smart_right.png")
+   img_monster_guard=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman2.png", 64, 64, 0, 31)
+   img_monster_guard_smart=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman2_smart.png", 64, 64, 0, 31)
 End Select
 Else
-   img_monster_guard=LoadImage(rootdir+"monsters/"+gameID+"/stoneman.png")
-   img_monster_guard_smart=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2.png")
-   img_monster_guard_left=LoadImage(rootdir+"monsters/"+gameID+"/stoneman_left.png")
-   img_monster_guard_smart_right=LoadImage(rootdir+"monsters/"+gameID+"/stoneman2_right.png")
+   img_monster_guard=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman.png", 64, 64, 0, 31)
+   img_monster_guard_smart=LoadAnimImage(rootdir+"monsters/"+gameID+"/stoneman2.png", 64, 64, 0, 31)
 EndIf
 
 'MonsterSmart
 
 Select currentWorldTypeX
 Case 1
-img_monster_smart=LoadImage(rootdir+"monsters/"+gameID+"/mummy.png")
-img_monster_smart_spawner=LoadImage(rootdir+"monsters/"+gameID+"/mummy_spawner.png")
+img_monster_smart=LoadAnimImage(rootdir+"monsters/"+gameID+"/mummy.png", 64, 64, 0, 31)
+img_monster_smart_spawner=LoadAnimImage(rootdir+"monsters/"+gameID+"/mummy_spawner.png", 64, 64, 0, 31)
 Case 2
-img_monster_smart=LoadImage(rootdir+"monsters/"+gameID+"/cyclop.png")
-img_monster_smart_spawner=LoadImage(rootdir+"monsters/"+gameID+"/cyclop_spawner.png")
+img_monster_smart=LoadAnimImage(rootdir+"monsters/"+gameID+"/cyclop.png", 64, 64, 0, 31)
+img_monster_smart_spawner=LoadAnimImage(rootdir+"monsters/"+gameID+"/cyclop_spawner.png", 64, 64, 0, 31)
 Case 3
-img_monster_smart=LoadImage(rootdir+"monsters/"+gameID+"/troll.png")
-img_monster_smart_spawner=LoadImage(rootdir+"monsters/"+gameID+"/troll_spawner.png")
+img_monster_smart=LoadAnimImage(rootdir+"monsters/"+gameID+"/troll.png", 64, 64, 0, 31)
+img_monster_smart_spawner=LoadAnimImage(rootdir+"monsters/"+gameID+"/troll_spawner.png", 64, 64, 0, 31)
 End Select
 
 'Gems
 
 'Gem1
-img_gem1=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem1.png")
+img_gem1=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem1.png", 64, 64, 0, 31)
 
 'Gem2
-img_gem2=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem2.png")
+img_gem2=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem2.png", 64, 64, 0, 31)
 
 'Gem3
-img_gem3=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem3.png")
+img_gem3=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem3.png", 64, 64, 0, 31)
 
 'Gem4
-img_gem4=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem4.png")
+img_gem4=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem4.png", 64, 64, 0, 31)
 
 'Gem5
-img_gem5=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem5.png")
+img_gem5=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem5.png", 64, 64, 0, 31)
 
 'Gem6
-img_gem6=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem6.png")
+img_gem6=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/gems/gem6.png", 64, 64, 0, 31)
 End Function
