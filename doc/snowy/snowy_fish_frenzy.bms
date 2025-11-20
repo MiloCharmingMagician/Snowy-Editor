@@ -1,8 +1,7 @@
 # Snowy: Fish Frenzy (script 0.2)
 # script for QuickBMS http://quickbms.aluigi.org
 
-idstring "AR"
-get ZERO short
+get MAGIC long
 get FILES long
 get TMP1 byte
 get TMP2 byte

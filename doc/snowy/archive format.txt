@@ -1,23 +1,39 @@
 .arf snowy archive format
 
-struct_root {
-    u8 sign[2]; // "AR"
-	u16 zero;
-	u32 fileCount;
-	u8 key1;
-	u8 key2;
-	u8 key3;
-	u8 key4;
-	u32 offset;
-	
-	struct_file {
-	    u8 namesz;
-	}
-	
-	struct_file {
-	    u32 id;
-		u32 offset;
-		u32 size;
-		u32 key;
-	}
-}
+struct_root
+{
+    Header header;
+    FileStringTable fst[fileCount];
+    FileEntryTable ftb[fileCount];
+    u8* data; // files stored here
+};
+
+struct_Header
+{
+    u32 magic; // "AR"
+    u32 fileCount;
+    u8 key1;
+    u8 key2;
+    u8 key3;
+    u8 key4;
+    u32 offset; // offset to FileEntry table
+};
+
+struct_FileStringTable
+{
+    u8 nameSize;
+    u8 xorBlock[ (nameSize + 3) & ~3 ];
+        // padded to 4 bytes, XOR encoded using key string:
+        // "%d %d %d %d" (key1, key2, key3, key4)
+    u8 remainder[ nameSize % 4 ];
+        // raw (not XOR’d), appended after xorBlock
+        // final filename = xorBlock[0..nameSize-1] + remainder
+};
+    
+struct_FileEntryTable
+{
+    u32 id; // unused?
+    u32 offset;
+    u32 size;
+    u32 key; // low byte used for XOR decrypt (first 0x14 bytes)
+};

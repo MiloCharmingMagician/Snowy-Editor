@@ -19,6 +19,13 @@
 *.html
 *.htm
 *.log
+*.arf
+*.user
+*.manifest
+*.obj
+*.dep
+*.suo
+*.ncb
 **/bin/
 **/jtag/
 **/data/
