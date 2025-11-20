@@ -45,7 +45,11 @@ Function LoadUIResources()
     BtnNameTable[8,0]="gold5_off"
     BtnNameTable[9,0]="gold6_off"
     BtnNameTable[10,0]="grid_off"
-    BtnNameTable[11,0]="exit_off" 
+    BtnNameTable[11,0]="exit_off"
+    BtnNameTable[12,0]="guardleft_off" 
+    BtnNameTable[13,0]="guardright_off"
+    BtnNameTable[14,0]="guard2left_off" 
+    BtnNameTable[15,0]="guard2right_off"
 
     For i = 0 To BtnOffUICount - 1
         img_ui_btn[i,0]=LoadImage(rootdir+"editor\"+BtnNameTable[i,0]+".png", 0)

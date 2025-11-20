@@ -5,8 +5,8 @@ Function LoadMap()
        filter$="Snowy Teasure Hunter Pack *.thp:thp"
    EndIf
    
-   'filename$=RequestFile( "Select pack file to load",filter$,False)
-   filename$=packsdir+"standard\0.th3"
+   filename$=RequestFile( "Select pack file to load",filter$,False)
+   'filename$=packsdir+"standard\0.th3"
    Local file:TStream = ReadFile(filename)
 
    If file Then

@@ -1,7 +1,7 @@
 Function InitMap()
     ui_editor_panel_flag = 1
     ui_editor_panel_active = 0
-    ui_editor_grid_active = 1
+    ui_editor_grid_active = 0
 
     For i:Int = 0 To 1000 - 1
         mapWidth[i] = 40
@@ -17,7 +17,7 @@ If gameID = "sth1" Then episode = 0
 If gameID = "sth2" Then episode = 1
 If gameID = "sth3" Then episode = 2
 
-LoadMap()
+'LoadMap()
 
 currWorldType = worldtype[0]
 
@@ -351,8 +351,7 @@ EndIf
 
 DrawText "Worldtype:"+worldtype[currlv],0,20
 
-DrawText "Episode:"+gameID,0,40
-DrawText "Level:"+currlv,width-80,20
+DrawText "Pack:"+currlv,800-80,20
 
 Select editmode
 Case 0'Tilemode
@@ -554,9 +553,21 @@ Local px:Int = MouseY()
 Local py:Int = MouseY()
 
 If ui_editor_panel_flag = 1 Then
-    If py >= 476 And py < 600 Then ui_editor_panel_active = 1
+    If py >= 460 And py < 600 Then
+        ui_editor_panel_active = 1
+        ui_click_block = 1
+    Else
+        ui_editor_panel_active = 0
+        ui_click_block = 0
+    EndIf
 Else
-    If py >= 0 And py < 600 Then ui_editor_panel_active = 1
+    If py >= 0 And py < 150 Then
+        ui_editor_panel_active = 1
+        ui_click_block = 1
+    Else
+        ui_editor_panel_active = 0
+        ui_click_block = 0
+    EndIf
 EndIf
 
 UpdateMapUI()
@@ -639,44 +650,7 @@ EndIf
 If episode = 3 Then episode = 0
 If episode = -1 Then episode = 2
 
-'Change GameID
-If KeyHit(KEY_E) Then
-     episode = episode + 1
-     
-     Select episode
-     Case -1
-         gameID = "sth3"
-         LoadResources()
-         LoadWorldResources()
-         Cls
-         episode = 2
-     Case 0
-         gameID = "sth1"
-         LoadResources()
-         LoadWorldResources()
-         Cls
-     Case 1
-         gameID = "sth2"
-         LoadResources()
-         LoadWorldResources()
-         Cls
-     Case 2
-         gameID = "sth3"
-         LoadResources()
-         LoadWorldResources()
-         Cls
-     Case 3
-         episode = 0
-         gameID = "sth1"
-         LoadResources()
-         LoadWorldResources()
-         Cls
-     End Select
-
-     DebugLog(episode)
-EndIf
-
-If ui_editor_panel_active = 0
+If ui_click_block = 0 And ui_editor_panel_active = 0
 'place tile
 If MouseDown(MOUSE_LEFT) Then
 Select editmode
@@ -978,7 +952,7 @@ Function UpdateMapUI()
     EndIf
 
     If MouseHit(MOUSE_LEFT) Then
-    If py >= ui_editor_panel_y And py < ui_editor_panel_y+32 Then
+    If px >= ui_editor_panel_x And px < ui_editor_panel_x + 32 And py >= ui_editor_panel_y And py < ui_editor_panel_y + 32 Then
         
         ' toggle 0 <-> 1
         If ui_editor_panel_flag = 0 Then
@@ -986,8 +960,6 @@ Function UpdateMapUI()
         Else
             ui_editor_panel_flag = 0
         EndIf
-        
-        DebugLog "FLAG = " + ui_editor_panel_flag
     EndIf
 EndIf
 End Function
