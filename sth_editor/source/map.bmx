@@ -126,10 +126,9 @@ DrawText("17",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 0861
 If img_arrow1 Then DrawImage(img_arrow1,scroll_x+x*tsize-12,scroll_y+y*tsize-60, AnimFrame[0])
 DrawText("0",scroll_x+x*tsize,scroll_y+y*tsize)
-
 Default'DEFAULT
-DrawText("O"+mapData(currlv, x,y, 1),scroll_x+x*tsize-8,scroll_y+y*tsize-17)
-DebugLog("Object:"+mapData(currlv, x, y, 1))
+'DrawText("O"+mapData(currlv, x,y, 1),scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+'DebugLog("Object:"+mapData(currlv, x, y, 1))
 End Select
 Next
 Next
@@ -163,94 +162,94 @@ If img_exit_closed Then DrawImage(img_exit_closed,scroll_x+x*tsize-8,scroll_y+y*
 Case 11
 If img_hero Then DrawImage(img_hero,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0])
 Case 12'Tel-In1
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("1",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 13'Tel-In2
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("2",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 14'Tel-In3
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("3",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 15'Tel-In4
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("4",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 16'Tel-In5
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("5",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 17'Tel-In6
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("6",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 18'Tel-In7
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("7",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 19'Tel-In8
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("8",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 20'Tel-In9
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("9",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 21'Tel-In10
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("10",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 22'Tel-In11
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("11",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 23'Tel-In12
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("12",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 24'Tel-In13
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("13",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 25'Tel-In14
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("14",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 26'Tel-In15
-If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_in Then DrawImage(img_teleport_in,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("15",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 27'Tel-Out1
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("1",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 28'Tel-Out2
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("2",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 29'Tel-Out3
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("3",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 30'Tel-Out4
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("4",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 31'Tel-Out5
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("5",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 32'Tel-Out6
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("6",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 33'Tel-Out7
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("7",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 34'Tel-Out8
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("8",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 35'Tel-Out9
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("9",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 36'Tel-Out10
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("10",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 37'Tel-Out11
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("11",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 38'Tel-Out12
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("12",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 39'Tel-Out13
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("13",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 40'Tel-Out14
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("14",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 41'Tel-Out15
-If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+If img_teleport_out Then DrawImage(img_teleport_out,scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[1])
 DrawText("15",scroll_x+x*tsize,scroll_y+y*tsize)
 Case 142'MonsterGuard-Right
 If img_monster_guard Then DrawImageFlipped(img_monster_guard, scroll_x+x*tsize-8,scroll_y+y*tsize-17, AnimFrame[0], 31, 0, 0)
@@ -311,8 +310,8 @@ If img_preset3 Then DrawImage(img_preset3,scroll_x+x*tsize,scroll_y+y*tsize)
 Case 969'Preset4
 If img_preset4 Then DrawImage(img_preset4,scroll_x+x*tsize,scroll_y+y*tsize)
 Default'DEFAULT
-DrawText("T"+mapData(currlv, x,y, 0),scroll_x+x*tsize-8,scroll_y+y*tsize-17)
-DebugLog("Tile:"+mapData(currlv, x, y, 0))
+'DrawText("T"+mapData(currlv, x,y, 0),scroll_x+x*tsize-8,scroll_y+y*tsize-17)
+'DebugLog("Tile:"+mapData(currlv, x, y, 0))
 End Select
 Next
 Next
@@ -324,7 +323,6 @@ Next
 If KeyDown(KEY_RIGHT) Then
     If camera_x = mapWidth[currlv]+1 Then
     Else
-
     Delay 40
     camera_x = camera_x + 1
     scroll_x = scroll_x - tsize
@@ -340,7 +338,6 @@ EndIf
 If KeyDown(KEY_DOWN) Then
     If camera_y = mapHeight[currlv]+1 Then
     Else
-
     Delay 40
     camera_y = camera_y + 1
     scroll_y = scroll_y - tsize
@@ -361,8 +358,11 @@ If KeyHit(KEY_W) Then
     worldtype[currlv] = worldtype[currlv] + 1
     If worldtype[currlv] > 2 Then worldtype[currlv] = 0 ' Wrap around
     currWorldType = worldtype[currlv]
-    LoadWorldResources()
+    If currWorldType = worldtype[currlv] Then
+    Else
     Cls
+    LoadWorldResources()
+    EndIf
     DebugLog("Worldtype: " + worldtype[currlv])
 EndIf
 
@@ -371,14 +371,17 @@ If KeyHit(KEY_D) Then
     worldtype[currlv] = worldtype[currlv] - 1
     If worldtype[currlv] < 0 Then worldtype[currlv] = 2 ' Wrap around
     currWorldType = worldtype[currlv]
-    LoadWorldResources()
+    If currWorldType = worldtype[currlv] Then
+    Else
     Cls
+    LoadWorldResources()
+    EndIf
     DebugLog("Worldtype: " + worldtype[currlv])
 EndIf
 
 DrawText "Worldtype:"+worldtype[currlv],0,20
 
-DrawText "Pack:"+currlv,800-80,20
+DrawText "Pack:",800-80,20
 
 Select editmode
 Case 0'Tilemode
@@ -560,19 +563,13 @@ DrawMapUI()
 End Function
 
 Function UpdateMap()
-'Standard Animations
+'Standard Animations - 31 Frames
 If AnimFrame[0] = 30 Then AnimFrame[0] = 0
 AnimFrame[0] = AnimFrame[0] + 1
 
-'Standard Ping-Pong Animations
-If AnimFrame[1] = 30 Then AnimMode[1] = 1
-If AnimFrame[1] = -1 Then AnimMode[1] = 29
-
-If AnimMode[1] = 0 Then
-    AnimFrame[1] = AnimFrame[1] + 1
-Else
-    AnimFrame[1] = AnimFrame[1] - 1
-EndIf
+'Standard Animations - 16 Frames
+If AnimFrame[1] = 15 Then AnimFrame[1] = 0
+AnimFrame[1] = AnimFrame[1] + 1
 
 Local mx:Int = (scroll_x-scroll_x-scroll_x+MouseX())/tsize
 Local my:Int = (scroll_y-scroll_y-scroll_y+MouseY())/tsize
@@ -645,11 +642,12 @@ If KeyHit(KEY_2) Then tiletype=tiletype+1
        DebugLog("Level: "+Int(currLv))
        DebugLog("World: "+Int(worldtype[currLv]))
        currWorldType = worldtype[currLv]
-       LoadWorldResources()
+      If currWorldType = worldtype[currlv] Then
+    Cls
+    LoadWorldResources()
+    Else
+    EndIf
 
-       'For j:Int = 0 To 5300 - 1
-       '    DebugLog("Flag"+Int(j)+": "+Int(flags[currLv, j]))
-       'Next
    EndIf
 
    If KeyHit(KEY_P) Then
@@ -657,7 +655,12 @@ If KeyHit(KEY_2) Then tiletype=tiletype+1
        If currLv=0 Then currLv=levelCount
        currLv=currLv-1
        currWorldType = worldtype[currLv]
-       LoadWorldResources()
+      If currWorldType = worldtype[currlv] Then
+    Cls
+    LoadWorldResources()
+    Else
+    EndIf
+
    EndIf
 
    'Map Data
@@ -669,9 +672,12 @@ If KeyHit(KEY_2) Then tiletype=tiletype+1
 'Loading Map Data
 If KeyHit(KEY_L) Then
     LoadMap()
-    currWorldType = worldType[0]
-    LoadWorldResources()
+    currWorldType = worldType[currlv]
+    If currWorldType = worldtype[currlv] Then
     Cls
+    LoadWorldResources()
+    Else
+    EndIf
 EndIf
 
 If episode = 3 Then episode = 0
@@ -851,11 +857,15 @@ Case 55
 mapData(currlv, mx,my, 0) = 159
 DebugLog "Placed Tile:Monster-Smart4-Spawner"
 Case 56
+If gameID="sth3" Then
 mapData(currlv, mx,my, 0) = 587
 DebugLog "Placed Tile:Cover"
+EndIf
 Case 57
+If gameID="sth3" Then
 mapData(currlv, mx,my, 0) = 266
 DebugLog "Placed Tile:Hammer"
+EndIf
 Case 58
 mapData(currlv, mx,my, 0) = 143
 DebugLog "Placed Tile:Stoneman-Right"
@@ -863,17 +873,25 @@ Case 59
 mapData(currlv, mx,my, 0) = 144
 DebugLog "Placed Tile:Smart-Stoneman-Left"
 Case 60
+If gameID="sth3" Then
 mapData(currlv, mx,my, 0) = 966
 DebugLog "Placed Tile:Preset1"
+EndIf
 Case 61
+If gameID="sth3" Then
 mapData(currlv, mx,my, 0) = 967
 DebugLog "Placed Tile:Preset2"
+EndIf
 Case 62
+If gameID="sth3" Then
 mapData(currlv, mx,my, 0) = 968
 DebugLog "Placed Tile:Preset3"
+EndIf
 Case 63
+If gameID="sth3" Then
 mapData(currlv, mx,my, 0) = 969
 DebugLog "Placed Tile:Preset4"
+EndIf
 End Select
 EndIf
 Case 1'Objectmode
@@ -899,47 +917,75 @@ Case 6
 mapData(currlv, mx,my, 1) = 378
 DebugLog "Placed Tile:Gem6"
 Case 7
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0836
 DebugLog "Placed Tile:Hint1"
+EndIf
 Case 8
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0837
 DebugLog "Placed Tile:Hint2"
+EndIf
 Case 9
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0838
 DebugLog "Placed Tile:Hint3"
+EndIf
 Case 10
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0839
 DebugLog "Placed Tile:Hint4"
+EndIf
 Case 11
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0840
 DebugLog "Placed Tile:Hint5"
+EndIf
 Case 12
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0841
 DebugLog "Placed Tile:Hint6"
+EndIf
 Case 13
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0842
 DebugLog "Placed Tile:Hint7"
+EndIf
 Case 14
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0843
 DebugLog "Placed Tile:Hint8"
+EndIf
 Case 15
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0844
 DebugLog "Placed Tile:Hint9"
+EndIf
 Case 16
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0845
 DebugLog "Placed Tile:Arrow2"
+EndIf
 Case 17
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0846
 DebugLog "Placed Tile:Hint10"
+EndIf
 Case 18
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0847
 DebugLog "Placed Tile:Hint11"
+EndIf
 Case 19
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0848
 DebugLog "Placed Tile:Hint12"
+EndIf
 Case 20
+If gameID="sth3" Then
 mapData(currlv, mx,my, 1) = 0849
 DebugLog "Placed Tile:Hint13"
+EndIf
 End Select
 EndIf
 End Select

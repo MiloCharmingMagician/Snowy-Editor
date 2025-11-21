@@ -90,9 +90,11 @@ Function LoadMap()
                 Next
             Next
             
+            If mapSign = mapVersion3 Then
             For j = 0 To 5300 - 1
 		        ReadShort(file)'unknown data
 		    Next
+		    EndIf
 		Next
 		EndIf
 		
@@ -160,11 +162,12 @@ Function SaveMap()
            Next
         Next
 
+        If mapSign = mapVersion3 Then
         For j = 0 To 5300 - 1
 		    WriteShort(file, 0)
 	    Next
+	    EndIf
       Next
-
       CloseFile(file)
    Else
       DebugLog("Couldn't Save LevelPack: "+filename)
@@ -176,6 +179,8 @@ Function CreateMapPack()
    Local filter:String
    Local pkLvlCount:String
    Local pkWorld:String
+
+   currlv=0
 
     pkLvlCount=Input("How many Levels?: ")
 
@@ -259,12 +264,18 @@ Function CreateMapPack()
            Next
         Next
 
+        If currMapVersion = mapVersion3 Then
         For j = 0 To 5300 - 1
 		    WriteShort(file, 0)
 	    Next
+	    EndIf
       Next
 
-      LoadWorldResources()
+      If currWorldType = worldtype[currlv] Then
+    Cls
+    LoadWorldResources()
+    Else
+    EndIf
       CloseFile(file)
    Else
       DebugLog("Couldn't Create - "+filename)

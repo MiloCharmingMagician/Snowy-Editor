@@ -1,7 +1,7 @@
 'Maps
 Global rootdir:String = "editor_data\"
 Global packsdir:String = "packs\"
-Global gameID:String = "sth3"
+Global gameID:String = "sth1"
 Global fixed:Int = 16
 Global mapPropMax:Int = 100
 Global mapWidth:Short[1000]

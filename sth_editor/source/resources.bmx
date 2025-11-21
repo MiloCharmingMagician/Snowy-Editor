@@ -63,9 +63,10 @@ Local currentWorldTypeX:Int = currWorldType+1
 DebugLog("Loading World Resources.")
 'Common
 
-Select currentWorldType
+Select currentWorldTypeX
 Case 1
 img_key=LoadAnimImage(rootdir + "items/"+gameID+"/key.png", 64, 64, 0, 31)
+DebugLog rootdir + "items/"+gameID+"/key.png"
 Case 2
 img_key=LoadAnimImage(rootdir + "items/"+gameID+"/key2.png", 64, 64, 0, 31)
 Case 3
@@ -81,13 +82,17 @@ img_background=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/backgr
 img_block_ground=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/block.png",40,40,0,16)
 
 'Cover
+If gameID="sth3" Then
 img_cover=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/cover.png")
+EndIf
 
 'Presets
+If gameID="sth3" Then
 img_preset1=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/presets/40x80_1.png")
 img_preset2=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/presets/40x80_2.png")
 img_preset3=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/presets/40x80_3.png")
 img_preset4=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/presets/80x80_1.png")
+EndIf
 
 'Block2
 img_block2_ground=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/block2.png",40,40,0,16)
@@ -113,18 +118,20 @@ img_hbar=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/blocks/hbar.
 'Objects
 
 'Teleport-In
-img_teleport_in=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/objects/teleport_in.png")
+img_teleport_in=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/objects/teleport_in.png", 64, 64, 0, 16)
 
 'Teleport-Out
-img_teleport_out=LoadImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/objects/teleport_out.png")
+img_teleport_out=LoadAnimImage(rootdir+"worlds/"+gameID+"/"+currentWorldTypeX+"/objects/teleport_out.png", 64, 64, 0, 16)
 
 'Hammmer
+If gameID="sth3" Then
 img_hammer=LoadAnimImage(rootdir+"items/hammer.png", 64, 64, 0, 31)
 
 'Hints
 img_hint=LoadAnimImage(rootdir+"common/hint_point.png", 64, 64, 0, 31)
 img_arrow2=LoadAnimImage(rootdir+"common/arrow2.png", 64, 64, 0, 31)
 img_arrow1=LoadAnimImage(rootdir+"common/arrow1.png", 64, 64, 0, 31)
+EndIf
 
 'Monsters
 'MonsterGuard
