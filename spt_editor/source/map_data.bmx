@@ -168,7 +168,7 @@ Function CreateMapPack()
 
         'Write Bytecode
         For j=0 To bytecodeSize-1
-            WriteByte(file, bytecode[i, j])
+            WriteByte(file, 0)
         Next
      Next
       LoadWorldResources()

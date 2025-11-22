@@ -53,9 +53,9 @@ Function DrawMap()
             Case 8
                If img_block Then DrawImage(img_block,cx+x*tsize, y*tsize)
                If img_ice Then DrawImage(img_ice,cx+x*tsize, y*tsize-10)
-            Default
-               DrawText("T:"+Int(map(currLv, x, y, 0)),cx+x*tsize-8, y*tsize-21)
-               DebugLog("Tile:"+map(currLv, x, y, 0))
+            'Default
+               'DrawText("T:"+Int(map(currLv, x, y, 0)),cx+x*tsize-8, y*tsize-21)
+               'DebugLog("Tile:"+map(currLv, x, y, 0))
          End Select
 
          Select map(currLv, x, y, 1)
@@ -96,9 +96,9 @@ Function DrawMap()
                Else
                    If img_gun_ground_r Then DrawImage(img_gun_ground_r,cx+x*tsize-10, y*tsize-35)
                EndIf
-            Default
-               DrawText("O:"+Int(map(currLv, x, y, 1)),cx+x*tsize-8, y*tsize-21)
-               DebugLog("Object:"+map(currLv, x, y, 1))
+            'Default
+               'DrawText("O:"+Int(map(currLv, x, y, 1)),cx+x*tsize-8, y*tsize-21)
+               'DebugLog("Object:"+map(currLv, x, y, 1))
          End Select
       Next
    Next
@@ -151,8 +151,8 @@ Function DrawMap()
                DrawText "Tiletype: Jump Pad", 0, 40
             Case 8
                DrawText "Tiletype: Ice", 0, 40
-            Default
-               DrawText "Tiletype: "+Int(tiletype), 0, 40
+            'Default
+            '   DrawText "Tiletype: "+Int(tiletype), 0, 40
          End Select
 
       Case 1'Objectmode
@@ -183,8 +183,8 @@ Function DrawMap()
                DrawText "ObjectType: Gun Left", 0, 40
             Case 13
                DrawText "ObjectType: Gun Right", 0, 40
-            Default
-               DrawText "ObjectType: "+Int(tiletype), 0, 40
+            'Default
+           '    DrawText "ObjectType: "+Int(tiletype), 0, 40
          End Select
    End Select
 End Function
@@ -201,6 +201,7 @@ Function UpdateMap()
    If worldtype[currLv]=-1 Then worldtype[currLv]=0
 
    If KeyHit(KEY_0) Then
+      tiletype=1
       databaseItem[editmode]=1
       editmode=editmode+1
       UpdateDatabase()
@@ -210,7 +211,7 @@ Function UpdateMap()
 If KeyHit(KEY_1) Then
     databaseItem[editmode] = databaseItem[editmode] + 1
     If editmode = 0 And databaseItem[editmode] > 8 Then databaseItem[editmode] = 1
-    If editmode = 1 And databaseItem[editmode] > 14 Then databaseItem[editmode] = 1
+    If editmode = 1 And databaseItem[editmode] > 13 Then databaseItem[editmode] = 1
     UpdateDatabase()
 EndIf
 

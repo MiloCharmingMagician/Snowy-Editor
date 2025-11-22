@@ -7,7 +7,11 @@ Function InitMap()
         worldType[i] = 0
     Next
 
+currLv = 0
+currWorldType = 0
+
 LoadResources()
+LoadWorldResources()
 End Function
 
 Function DrawMap()
@@ -28,9 +32,9 @@ Function DrawMap()
                If img_diagblock_left_down Then DrawImage(img_diagblock_left_down,x*tsize, y*tsize)
             Case 5
                If img_diagblock_left_up Then DrawImage(img_diagblock_left_up,x*tsize, y*tsize)
-            Default
-               DrawText("T:"+Int(map(currLv, x, y, 0)),x*tsize-8, y*tsize-17)
-               DebugLog("Tile:"+map(currLv, x, y, 0))
+            'Default
+             '  DrawText("T:"+Int(map(currLv, x, y, 0)),x*tsize-8, y*tsize-17)
+             '  DebugLog("Tile:"+map(currLv, x, y, 0))
          End Select
 
          Select map(currLv, x, y, 1)
@@ -129,18 +133,18 @@ Function DrawMap()
                If img_monster_boss_hen Then DrawImage(img_monster_boss_hen, x*tsize-8, y*tsize-17)
             Case 55
                If img_monster_boss_hen Then DrawImage(img_monster_boss_hen, x*tsize-8, y*tsize-17)
-            Default
-               DrawText("O:"+Int(map(currLv, x, y, 1)),x*tsize-8, y*tsize-17)
-               DebugLog("Object:"+map(currLv, x, y, 1))
+            'Default
+            '   DrawText("O:"+Int(map(currLv, x, y, 1)),x*tsize-8, y*tsize-17)
+            '   DebugLog("Object:"+map(currLv, x, y, 1))
          End Select
 
          Select map(currLv, x, y, 2)
             Case 0'NONE
             Case 1
                If img_kick Then DrawImage(img_kick, x*tsize-8, y*tsize-17)
-            Default
-               DrawText("I:"+Int(map(currLv, x, y, 2)),x*tsize-8, y*tsize-17)
-               DebugLog("Item:"+map(currLv, x, y, 2))
+            'Default
+            '   DrawText("I:"+Int(map(currLv, x, y, 2)),x*tsize-8, y*tsize-17)
+            '   DebugLog("Item:"+map(currLv, x, y, 2))
          End Select
        Next
    Next
@@ -182,8 +186,8 @@ Function DrawMap()
                DrawText "Tiletype: Block4", 0, 0
             Case 5
                DrawText "Tiletype: Block5", 0, 0
-            Default
-               DrawText "Tiletype: "+tiletype, 0, 0
+            'Default
+            '   DrawText "Tiletype: "+tiletype, 0, 0
          End Select
 
       Case 1'Objectmode
@@ -282,15 +286,15 @@ Function DrawMap()
                DrawText "ObjectType: Cat Monster5", 0, 0
             Case 47
                DrawText "ObjectType: Cat Monster6", 0, 0
-            Default
-               DrawText "ObjectType: "+tiletype, 0, 0
+            'Default
+            '   DrawText "ObjectType: "+tiletype, 0, 0
          End Select
      Case 2'Itemmode
         Select tiletype
         Case 1
            DrawText "Itemtype: Bonus", 0, 0
-        Default
-           DrawText "Itemtype: "+tiletype, 0, 0
+        'Default
+           'DrawText "Itemtype: "+tiletype, 0, 0
         End Select
    End Select
 End Function
@@ -306,17 +310,21 @@ Function UpdateMap()
    'control worldtype
    If worldtype[currLv]=-1 Then worldtype[currLv]=0
 
-   Select editmode
-      Case 0'Tilemode
-         If tiletype=0 Or tiletype=-1 Then tiletype=4
-         If tiletype=5 Then tiletype=1
-      Case 1'Objectmode
-         If tiletype=0 Or tiletype=-1 Then tiletype=47
-         If tiletype=48 Then tiletype=1
-      Case 2'Itemmode
-         If tiletype=0 Or tiletype=-1 Then tiletype=1
-         If tiletype=2 Then tiletype=1
-   End Select
+Select editmode
+
+    Case 0 'Tilemode
+        If tiletype < 1 Then tiletype = 5
+        If tiletype > 5 And tiletype < 7 Then tiletype = 1
+
+    Case 1 'Objectmode
+        If tiletype < 1 Then tiletype = 47
+        If tiletype > 47 And tiletype < 49 Then tiletype = 1
+
+    Case 2 'Itemmode
+        If tiletype < 1 Then tiletype = 1
+        If tiletype > 1 And tiletype < 3 Then tiletype = 1
+
+End Select
 
    If KeyHit(KEY_0) Then
       tiletype=1
@@ -344,199 +352,221 @@ Function UpdateMap()
    'Make New Map Pack
    If KeyHit(KEY_M) Then CreateMapPack()
 
-   'place tile
-   If MouseDown(MOUSE_LEFT) Then
-      Select editmode
-         Case 0'Tilemode
+'place tile
+If MouseDown(MOUSE_LEFT) Then
+
+    '---- SAFE CHECK ----
+    Local tx:Int = MouseX() / tsize
+    Local ty:Int = MouseY() / tsize
+    If tx < 0 Or ty < 0 Then Return
+    If tx >= 20 Or ty >= 14 Then Return
+    '----------------------------------------
+
+    Select editmode
+        Case 0 'Tilemode
             Select tiletype
-               Case 1
-                   DebugLog "Placed Tile: Block X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
-                   map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 1
-               Case 2
-                   DebugLog "Placed Tile: Block2 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
-                   map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 2
-               Case 3
-                   DebugLog "Placed Tile: Block3 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
-                   map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 3
-               Case 4
-                   DebugLog "Placed Tile: Block4 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
-                   map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 4
-               Case 5
-                   DebugLog "Placed Tile: Block5 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
-                   map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 5
+                Case 1
+                    DebugLog "Placed Tile: Block X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
+                    map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 1
+                Case 2
+                    DebugLog "Placed Tile: Block2 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
+                    map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 2
+                Case 3
+                    DebugLog "Placed Tile: Block3 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
+                    map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 3
+                Case 4
+                    DebugLog "Placed Tile: Block4 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
+                    map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 4
+                Case 5
+                    DebugLog "Placed Tile: Block5 X:"+Int((MouseX())/tsize)+" Y:"+Int((MouseY())/tsize)
+                    map(currLv, (MouseX())/tsize, (MouseY())/tsize, 0) = 5
             End Select
 
-         Case 1'Objectmode
+        Case 1 'Objectmode
             Select tiletype
-               Case 1
-                  DebugLog "Placed Object: Hero"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 5
-               Case 2
-                  DebugLog "Placed Object: Boss Mask"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 37
-               Case 3
-                  DebugLog "Placed Object: Boss Bag"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 31
-               Case 4
-                  DebugLog "Placed Object: Boss Teapot"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 33
-               Case 5
-                  DebugLog "Placed Object: Boss Balloon"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 35
-               Case 6
-                  DebugLog "Placed Object: Boss Hen1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 54
-               Case 7
-                  DebugLog "Placed Object: Boss Hen2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 55
-               Case 8
-                  DebugLog "Placed Object: Red Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 6
-               Case 9
-                  DebugLog "Placed Object: Red Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 7
-               Case 10
-                  DebugLog "Placed Object: Red Monster3"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 8
-               Case 11
-                  DebugLog "Placed Object: Red Monster4"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 9
-               Case 12
-                  DebugLog "Placed Object: Red Monster5"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 28
-               Case 13
-                  DebugLog "Placed Object: Red Monster6"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 29
-               Case 14
-                  DebugLog "Placed Object: Green Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 10
-               Case 15
-                  DebugLog "Placed Object: Green Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 11
-               Case 16
-                  DebugLog "Placed Object: Green Monster3"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 12
-               Case 17
-                  DebugLog "Placed Object: Green Monster4"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 13
-               Case 18
-                  DebugLog "Placed Object: Dog Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 14
-               Case 19
-                  DebugLog "Placed Object: Dog Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 15
-               Case 20
-                  DebugLog "Placed Object: Dog Monster3"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 16
-               Case 21
-                  DebugLog "Placed Object: Dog Monster4"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 17
-               Case 22
-                  DebugLog "Placed Object: Dog Monster5"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 38
-               Case 23
-                  DebugLog "Placed Object: Dog Monster6"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 39
-               Case 24
-                  DebugLog "Placed Object: Bird Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 18
-               Case 25
-                  DebugLog "Placed Object: Bird Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 19
-               Case 26
-                  DebugLog "Placed Object: Tusk Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 20
-               Case 27
-                  DebugLog "Placed Object: Tusk Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 21
-               Case 28
-                  DebugLog "Placed Object: Tornado Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 22
-               Case 29
-                  DebugLog "Placed Object: Tornado Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 23
-               Case 30
-                  DebugLog "Placed Object: Bomber Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 24
-               Case 31
-                  DebugLog "Placed Object: Bomber Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 25
-               Case 32
-                  DebugLog "Placed Object: Bomber Monster3"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 26
-               Case 33
-                  DebugLog "Placed Object: Bomber Monster4"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 27
-               Case 34
-                  DebugLog "Placed Object: Bomber Monster5"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 40
-               Case 35
-                  DebugLog "Placed Object: Bomber Monster6"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 41
-               Case 36
-                  DebugLog "Placed Object: Bomber Monster7"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 42
-               Case 37
-                  DebugLog "Placed Object: Bomber Monster8"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 43
-               Case 38
-                  DebugLog "Placed Object: Ballbot Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 44
-               Case 39
-                  DebugLog "Placed Object: Ballbot Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 45
-               Case 40
-                  DebugLog "Placed Object: Ballbot Monster3"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 46
-               Case 41
-                  DebugLog "Placed Object: Ballbot Monster4"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 47
-               Case 42
-                  DebugLog "Placed Object: Cat Monster1"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 48
-               Case 43
-                  DebugLog "Placed Object: Cat Monster2"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 49
-               Case 44
-                  DebugLog "Placed Object: Cat Monster3"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 50
-               Case 45
-                  DebugLog "Placed Object: Cat Monster4"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 51
-               Case 46
-                  DebugLog "Placed Object: Cat Monster5"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 52
-               Case 47
-                  DebugLog "Placed Object: Cat Monster6"
-                  map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 53
+                Case 1
+                    DebugLog "Placed Object: Hero"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 5
+                Case 2
+                    DebugLog "Placed Object: Boss Mask"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 37
+                Case 3
+                    DebugLog "Placed Object: Boss Bag"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 30
+                Case 4
+                    DebugLog "Placed Object: Boss Teapot"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 33
+                Case 5
+                    DebugLog "Placed Object: Boss Balloon"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 35
+                Case 6
+                    DebugLog "Placed Object: Boss Hen1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 54
+                Case 7
+                    DebugLog "Placed Object: Boss Hen2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 55
+                Case 8
+                    DebugLog "Placed Object: Red Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 6
+                Case 9
+                    DebugLog "Placed Object: Red Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 7
+                Case 10
+                    DebugLog "Placed Object: Red Monster3"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 8
+                Case 11
+                    DebugLog "Placed Object: Red Monster4"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 9
+                Case 12
+                    DebugLog "Placed Object: Red Monster5"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 28
+                Case 13
+                    DebugLog "Placed Object: Red Monster6"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 29
+                Case 14
+                    DebugLog "Placed Object: Green Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 10
+                Case 15
+                    DebugLog "Placed Object: Green Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 11
+                Case 16
+                    DebugLog "Placed Object: Green Monster3"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 12
+                Case 17
+                    DebugLog "Placed Object: Green Monster4"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 13
+                Case 18
+                    DebugLog "Placed Object: Dog Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 14
+                Case 19
+                    DebugLog "Placed Object: Dog Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 15
+                Case 20
+                    DebugLog "Placed Object: Dog Monster3"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 16
+                Case 21
+                    DebugLog "Placed Object: Dog Monster4"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 17
+                Case 22
+                    DebugLog "Placed Object: Dog Monster5"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 38
+                Case 23
+                    DebugLog "Placed Object: Dog Monster6"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 39
+                Case 24
+                    DebugLog "Placed Object: Bird Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 18
+                Case 25
+                    DebugLog "Placed Object: Bird Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 19
+                Case 26
+                    DebugLog "Placed Object: Tusk Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 20
+                Case 27
+                    DebugLog "Placed Object: Tusk Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 21
+                Case 28
+                    DebugLog "Placed Object: Tornado Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 22
+                Case 29
+                    DebugLog "Placed Object: Tornado Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 23
+                Case 30
+                    DebugLog "Placed Object: Bomber Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 24
+                Case 31
+                    DebugLog "Placed Object: Bomber Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 25
+                Case 32
+                    DebugLog "Placed Object: Bomber Monster3"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 26
+                Case 33
+                    DebugLog "Placed Object: Bomber Monster4"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 27
+                Case 34
+                    DebugLog "Placed Object: Bomber Monster5"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 40
+                Case 35
+                    DebugLog "Placed Object: Bomber Monster6"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 41
+                Case 36
+                    DebugLog "Placed Object: Bomber Monster7"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 42
+                Case 37
+                    DebugLog "Placed Object: Bomber Monster8"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 43
+                Case 38
+                    DebugLog "Placed Object: Ballbot Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 44
+                Case 39
+                    DebugLog "Placed Object: Ballbot Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 45
+                Case 40
+                    DebugLog "Placed Object: Ballbot Monster3"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 46
+                Case 41
+                    DebugLog "Placed Object: Ballbot Monster4"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 47
+                Case 42
+                    DebugLog "Placed Object: Cat Monster1"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 48
+                Case 43
+                    DebugLog "Placed Object: Cat Monster2"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 49
+                Case 44
+                    DebugLog "Placed Object: Cat Monster3"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 50
+                Case 45
+                    DebugLog "Placed Object: Cat Monster4"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 51
+                Case 46
+                    DebugLog "Placed Object: Cat Monster5"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 52
+                Case 47
+                    DebugLog "Placed Object: Cat Monster6"
+                    map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 53
             End Select
-         Case 2'Itemmode
-            Select tiletype
-               Case 1
-                   DebugLog "Placed Item: Bonus"
-                   map(currLv, (MouseX())/tsize, (MouseY())/tsize, 2) = 1
-            End Select
-      EndSelect
-   EndIf
 
-   'remove tile
-   If MouseDown(MOUSE_RIGHT) Then
-      Select editmode
-         Case 0'Tilemode
-           If Not map(currLv, (MouseX())/tsize,(MouseY())/tsize, 0) = 0 Then
-              DebugLog "Removed Tile"
-              map(currLv, (MouseX())/tsize,(MouseY())/tsize, 0) = 0
-           EndIf
-         Case 1'Objectmode
-           If Not map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 0 Then
-              DebugLog "Removed Object"
-              map(currLv, (MouseX())/tsize,(MouseY())/tsize, 1) = 0
-           EndIf
-         Case 2'Itemmode
-           If Not map(currLv, (MouseX())/tsize,(MouseY())/tsize, 2) = 0 Then
-              DebugLog "Removed Item"
-              map(currLv, (MouseX())/tsize,(MouseY())/tsize, 2) = 0
-           EndIf
-      EndSelect
-   EndIf
+        Case 2 'Itemmode
+            Select tiletype
+                Case 1
+                    DebugLog "Placed Item: Bonus"
+                    map(currLv, (MouseX())/tsize, (MouseY())/tsize, 2) = 1
+            End Select
+
+    End Select
+
+EndIf
+
+   ' remove tile
+If MouseDown(MOUSE_RIGHT) Then
+	
+	Local tx2:Int = MouseX() / tsize
+	Local ty2:Int = MouseY() / tsize
+
+	'--- bounds check to prevent -1,-1 or overflow ---
+	If tx2 < 0 Or ty2 < 0 Then Return
+	If tx2 >= 20 Or ty2 >= 14 Then Return
+	'---------------------------------------------------
+
+	Select editmode
+		Case 0 'Tilemode
+			If map(currLv, tx2, ty2, 0) <> 0 Then
+				DebugLog "Removed Tile"
+				map(currLv, tx2, ty2, 0) = 0
+			EndIf
+
+		Case 1 'Objectmode
+			If map(currLv, tx2, ty2, 1) <> 0 Then
+				DebugLog "Removed Object"
+				map(currLv, tx2, ty2, 1) = 0
+			EndIf
+
+		Case 2 'Itemmode
+			If map(currLv, tx2, ty2, 2) <> 0 Then
+				DebugLog "Removed Item"
+				map(currLv, tx2, ty2, 2) = 0
+			EndIf
+	End Select
+EndIf
 End Function

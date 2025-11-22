@@ -359,7 +359,6 @@ If KeyHit(KEY_W) Then
     If worldtype[currlv] > 2 Then worldtype[currlv] = 0 ' Wrap around
     currWorldType = worldtype[currlv]
     If currWorldType = worldtype[currlv] Then
-    Else
     Cls
     LoadWorldResources()
     EndIf
@@ -372,7 +371,6 @@ If KeyHit(KEY_D) Then
     If worldtype[currlv] < 0 Then worldtype[currlv] = 2 ' Wrap around
     currWorldType = worldtype[currlv]
     If currWorldType = worldtype[currlv] Then
-    Else
     Cls
     LoadWorldResources()
     EndIf
@@ -381,7 +379,7 @@ EndIf
 
 DrawText "Worldtype:"+worldtype[currlv],0,20
 
-DrawText "Pack:",800-80,20
+DrawText "Pack: "+currlv,800-80,20
 
 Select editmode
 Case 0'Tilemode

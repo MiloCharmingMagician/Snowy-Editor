@@ -72,21 +72,21 @@ void loadPack(const char* filename)
         /* worldType */
         fread(&worldType[i], sizeof(worldType[i]), 1, file);
 
-		printf("WorldType: %hu\n", worldType[0]);
+		printf("WorldType: %hu\n", worldType[i]);
 
         /* mapConfig 0..6 */
         for (j = 0; j < MAX_CONFIG; j++)
         {
             fread(&mapConfig[i][j], sizeof(mapConfig[i][j]), 1, file);
-			printf("MapConfig: %hu\n", mapConfig[0][j]);
+			printf("MapConfig: %hu\n", mapConfig[i][j]);
         }
 
         /* width and height */
         fread(&mapWidth[i], sizeof(mapWidth[i]), 1, file);
         fread(&mapHeight[i], sizeof(mapHeight[i]), 1, file);
 
-		printf("MapWidth: %hu\n", mapWidth[0]);
-		printf("MapHeight: %hu\n", mapHeight[0]);
+		printf("MapWidth: %hu\n", mapWidth[i]);
+		printf("MapHeight: %hu\n", mapHeight[i]);
 
         /* Tiles layer 0 */
         for (x = 0; x < (int)mapHeight[i]; x++)
@@ -132,6 +132,7 @@ void savePack(const char* filename)
         /* you force new size */
         mapWidth[i]  = 40;
         mapHeight[i] = 30;
+		worldType[i] = 2;
 
         /* worldType */
         fwrite(&worldType[i], sizeof(worldType[i]), 1, file);
@@ -180,8 +181,8 @@ void savePack(const char* filename)
 int main()
 {
 	init();
-    loadPack("0.thp");
-    savePack("0.th3");
+    loadPack("3.thp");
+    savePack("3.th3");
 	system("pause");
     return 0;
 }

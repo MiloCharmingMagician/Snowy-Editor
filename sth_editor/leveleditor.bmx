@@ -4,7 +4,16 @@ Include "source\map.bmx"
 Include "source\mapdata.bmx"
 Include "source\config.bmx"
 
-AppTitle = "Snowy Treasure Hunter Editor"
+Select gameID
+Case "sth1"
+    AppTitle = "Snowy Treasure Hunter Editor"
+Case "sth2"
+    AppTitle = "Snowy Treasure Hunter 2 Editor"
+Case "sth3"
+    AppTitle = "Snowy Treasure Hunter 3 Editor"
+Default
+End Select
+
 Graphics 800, 600
 
 InitMap()

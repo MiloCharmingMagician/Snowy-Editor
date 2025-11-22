@@ -28,7 +28,7 @@ Global img_monster_green:TImage
 Global img_monster_ballbot:TImage
 Global img_monster_boss_mask:TImage
 Global img_monster_boss_bag:TImage
-Global img_monster_boss_teabot:TImage
+Global img_monster_boss_teapot:TImage
 Global img_monster_boss_balloon:TImage
 Global img_monster_boss_hen:TImage
 Global img_monster_green2:TImage

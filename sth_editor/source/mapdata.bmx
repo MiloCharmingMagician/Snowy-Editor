@@ -98,6 +98,11 @@ Function LoadMap()
 		Next
 		EndIf
 		
+		If currWorldType = worldtype[currlv] Then
+        Cls
+        LoadWorldResources()
+        EndIf
+
         CloseFile(file)
         EndIf
    Else
@@ -271,12 +276,12 @@ Function CreateMapPack()
 	    EndIf
       Next
 
-      If currWorldType = worldtype[currlv] Then
-    Cls
-    LoadWorldResources()
-    Else
-    EndIf
-      CloseFile(file)
+     If currWorldType = worldtype[currlv] Then
+     Cls
+     LoadWorldResources()
+     EndIf
+
+     CloseFile(file)
    Else
       DebugLog("Couldn't Create - "+filename)
    EndIf
